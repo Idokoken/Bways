@@ -1,0 +1,36 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend of ecommerce website",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "lint": "eslint"
+  },
+  "keywords": [
+    "ecommerce",
+    "products",
+    "payment",
+    "gateways",
+    "Bways"
+  ],
+  "author": "Kenneth",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "chalk": "^4.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.8.4",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.32.0",
+    "nodemon": "^2.0.20"
+  }
+}
