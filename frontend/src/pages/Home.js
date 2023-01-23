@@ -1,7 +1,12 @@
 import React from "react";
+import Products from "../components/Products";
 
 function Home() {
-  return <div className="container">welcome home</div>;
+  return (
+    <>
+      <Products />
+    </>
+  );
 }
 
 export default Home;
