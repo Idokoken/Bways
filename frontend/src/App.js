@@ -9,6 +9,7 @@ import ErrorPage from "./pages/ErrorPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Product from "./components/Product";
+import Products from "./components/Products";
 
 function App() {
   return (
@@ -16,12 +17,13 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/product" element={<Products />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" exact element={<About />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/signin" element={<Login />} />
-        <Route path="/signup" element={<Register />} />
+        <Route path="/register" element={<Register />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />

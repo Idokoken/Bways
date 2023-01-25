@@ -6,7 +6,14 @@ class Contact extends Component {
   render() {
     const Wrapper = styled.div`
       min-height: 70vh;
-      background-color: aliceblue;
+      background-image: linear-gradient(
+        to bottom right,
+        rgba(92, 122, 169, 1),
+        white,
+        white,
+        rgba(92, 122, 169, 1)
+      );
+
       section {
         display: flex;
         align-items: center;

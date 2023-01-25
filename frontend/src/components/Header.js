@@ -11,8 +11,9 @@ function Header() {
               src="/assets/brand.png"
               alt=""
               width="30"
-              height="24"
+              height="30"
               className="d-inline-block align-text-top me-2"
+              style={{ borderRadius: "50%" }}
             />
             Bways
           </Link>
@@ -28,6 +29,23 @@ function Header() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/products">
+                  products
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/about">
+                  About
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/contact">
+                  contact
+                </NavLink>
+              </li>
+            </ul>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <NavLink className="nav-link" to="/cart">
@@ -36,7 +54,12 @@ function Header() {
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/signin">
-                  Sign In
+                  signin
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/register">
+                  signup
                 </NavLink>
               </li>
             </ul>

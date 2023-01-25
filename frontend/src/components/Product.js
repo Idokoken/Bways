@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Rating from "./Rating";
 import { tablet } from "../Responsive";
-import { Data } from "../configs/data";
 
 const Wrapper = styled.div`
   display: grid;
@@ -55,24 +54,22 @@ const Wrapper = styled.div`
 
 function Product() {
   const { id } = useParams();
-  //const [product, setProduct] = useState({});
+  const [product, setProduct] = useState({});
 
-  // const getProduct = async () => {
-  //   try {
-  //     const resp = await fetch(`http://localhost:3000/product/${id}`);
-  //     const data = await resp.json();
-  //     setProduct(data);
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const getProduct = async () => {
+    try {
+      const resp = await fetch(`/product/${id}`);
+      const data = await resp.json();
+      setProduct(data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // useEffect(() => {
-  //   getProduct();
-  // }, []);
-
-  const product = Data.find((item, i) => item._id === id);
+  useEffect(() => {
+    getProduct();
+  }, []);
 
   return (
     <Wrapper>

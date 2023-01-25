@@ -4,7 +4,8 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import { tablet } from "../Responsive";
-import { Data } from "../configs/data";
+import LoadingBox from "./LoadingBox";
+import MessageBox from "./MessageBox";
 
 const Wrapper = styled.div`
   display: grid;
@@ -54,22 +55,27 @@ const Wrapper = styled.div`
 `;
 function Products() {
   const [product, setProduct] = useState([]);
-  //const [loading, setLoading] = useState(false)
-  //const [error, seterror] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-  const getproducts = async () => {
+  const getProducts = async () => {
     try {
+      setLoading(true);
       const resp = await axios.get("/product");
+      setProduct(resp.data);
       console.log(resp.data);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
+      setError(true);
       console.log(error);
     }
   };
   useEffect(() => {
-    getproducts();
+    getProducts();
   }, []);
 
-  const items = Data.map((item, i) => {
+  const items = product.map((item, i) => {
     return (
       <div className="card" key={item._id}>
         <NavLink to={`/product/${item._id}`} style={{ textDecoration: "none" }}>
@@ -90,7 +96,16 @@ function Products() {
 
   return (
     <>
-      <Wrapper className="row">{items}</Wrapper>
+      <Wrapper className="row">
+        {loading ? (
+          <LoadingBox />
+        ) : error ? (
+          <MessageBox>{error}</MessageBox>
+        ) : (
+          "product"
+        )}
+        {items}
+      </Wrapper>
     </>
   );
 }
