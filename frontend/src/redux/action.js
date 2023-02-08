@@ -1,28 +1,42 @@
-import { ADDPRODUCT, DELETEPRODUCT, UPDATEPRODUCT } from "./actionType";
+import axios from "axios";
+import {
+  PRODUCT_LIST_FAIL,
+  PRODUCT_LIST_REQUEST,
+  PRODUCT_LIST_SUCCESS,
+} from "./actionType";
 
-export const addProduct = (product) => {
-  return (dispatch) => {
+export const listProducts = () => async (dispatch) => {
+  dispatch({
+    type: PRODUCT_LIST_REQUEST,
+  });
+  try {
+    const resp = await axios.get("/product");
     dispatch({
-      type: ADDPRODUCT,
-      payload: product,
+      type: PRODUCT_LIST_SUCCESS,
+      payload: resp.data,
     });
-  };
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_LIST_FAIL,
+      payload: error.message,
+    });
+  }
 };
 
-export const updateProduct = (product) => {
-  return (dispatch) => {
+export const productDetail = (id) => async (dispatch) => {
+  dispatch({
+    type: PRODUCT_LIST_REQUEST,
+  });
+  try {
+    const resp = await axios.get(`/product/${id}`);
     dispatch({
-      type: UPDATEPRODUCT,
-      payload: product,
+      type: PRODUCT_LIST_SUCCESS,
+      payload: resp.data,
     });
-  };
-};
-
-export const deleteProduct = (product) => {
-  return (dispatch) => {
+  } catch (error) {
     dispatch({
-      type: DELETEPRODUCT,
-      payload: product,
+      type: PRODUCT_LIST_FAIL,
+      payload: error.message,
     });
-  };
+  }
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { tablet } from "../Responsive";
 
@@ -42,6 +43,14 @@ const Wrapper = styled.footer`
   .icon {
     margin-right: 20px;
   }
+  .mobile-img {
+    height: 30px;
+    width: 90px;
+    border-radius: 5px;
+  }
+  .mobile-container p {
+    margin-bottom: 10px;
+  }
 `;
 
 function Footer() {
@@ -71,13 +80,33 @@ function Footer() {
         </div>
         <div className="item brand">
           <div className="icon-header">
-            <img src="/assets/brand.png" alt="brand" /> <h3>Bways</h3>
+            <img src="/assets/brand.png" alt="brand" />{" "}
+            <h3 className="ms-2">Bways</h3>
           </div>
           <h4>Follow Us</h4>
           <div className="icons-container">
             <i className="fa-brands fa-facebook icon"></i>
             <i className="fa-brands fa-twitter icon"></i>
             <i className="fa-brands fa-instagram icon"></i>
+          </div>
+          <div className="mobile-container mt-4">
+            <p>Mobile</p>
+            <div className="mobile">
+              <Link to="/" className="me-3">
+                <img
+                  src="/assets/apple.jpg"
+                  className="mobile-img"
+                  alt="mobile"
+                />
+              </Link>
+              <Link to="/">
+                <img
+                  src="/assets/google.jpg"
+                  className="mobile-img"
+                  alt="mobile"
+                />
+              </Link>
+            </div>
           </div>
         </div>
       </div>

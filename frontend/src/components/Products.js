@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Rating from "./Rating";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import axios from "axios";
 import { tablet } from "../Responsive";
 import LoadingBox from "./LoadingBox";
 import MessageBox from "./MessageBox";
+import { useDispatch, useSelector } from "react-redux";
+import { listProducts } from "../redux/action";
 
 const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 50% 50%;
-  gap: 10px;
-  margin: 1rem;
-  ${tablet({ gridTemplateColumns: "25% 25% 25% 25%" })}
+  .row {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 5px;
+    margin: 1rem;
+    ${tablet({ gridTemplateColumns: "25% 25% 25% 25%" })}
+  }
 
   .item {
     justify-content: center;
@@ -54,57 +57,53 @@ const Wrapper = styled.div`
   }
 `;
 function Products() {
-  const [product, setProduct] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const dispatch = useDispatch();
+  const productlist = useSelector((state) => state.productlist);
+  const { loading, error, products } = productlist;
 
-  const getProducts = async () => {
-    try {
-      setLoading(true);
-      const resp = await axios.get("/product");
-      setProduct(resp.data);
-      console.log(resp.data);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      setError(true);
-      console.log(error);
-    }
-  };
   useEffect(() => {
-    getProducts();
-  }, []);
+    dispatch(listProducts());
+  }, [dispatch]);
 
-  const items = product.map((item, i) => {
-    return (
-      <div className="card" key={item._id}>
-        <NavLink to={`/product/${item._id}`} style={{ textDecoration: "none" }}>
-          <div className="image-container">
-            <img src={item.image} alt={item.name} />
+  const items =
+    products &&
+    products.map((item, i) => {
+      return (
+        <div className="card" key={item._id}>
+          <NavLink
+            to={`/product/${item._id}`}
+            style={{ textDecoration: "none" }}
+          >
+            <div className="image-container">
+              <img src={item.image} alt={item.name} />
+            </div>
+            <div className="card-body">
+              <h3>{item.name}</h3>
+            </div>
+          </NavLink>
+          <Rating rating={item.rating} numReviews={item.numReviews} />
+          <div className="price">
+            <h4>${item.price}</h4>
           </div>
-          <div className="card-body">
-            <h3>{item.name}</h3>
-          </div>
-        </NavLink>
-        <Rating rating={item.rating} numReviews={item.numReviews} />
-        <div className="price">
-          <h4>${item.price}</h4>
         </div>
-      </div>
-    );
-  });
+      );
+    });
 
   return (
     <>
-      <Wrapper className="row">
-        {loading ? (
-          <LoadingBox />
-        ) : error ? (
-          <MessageBox>{error}</MessageBox>
-        ) : (
-          "product"
-        )}
-        {items}
+      <Wrapper>
+        <div className="row">
+          {loading ? (
+            <LoadingBox />
+          ) : error ? (
+            <MessageBox>{error}</MessageBox>
+          ) : (
+            <>{items}</>
+          )}
+        </div>
+        <div className="content mx-3">
+          <h4>others things</h4>
+        </div>
       </Wrapper>
     </>
   );

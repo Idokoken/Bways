@@ -34,7 +34,7 @@ function Newsletter() {
       <h4>Get personalized insights on products to your inbox</h4>
       <div>
         <input type="email" placeholder="enter email" />
-        <button>Sign up now</button>
+        <button>Subscribe</button>
       </div>
     </Wrapper>
   );
