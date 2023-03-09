@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { tablet } from "../Responsive";
 
 class Contact extends Component {
   render() {
     const Wrapper = styled.div`
-      min-height: 70vh;
+      min-height: 50vh;
       background-image: linear-gradient(
         to bottom right,
         rgba(92, 122, 169, 1),
@@ -14,36 +15,71 @@ class Contact extends Component {
         rgba(92, 122, 169, 1)
       );
 
-      section {
+      .tel {
         display: flex;
         align-items: center;
+      }
+      .contact {
+        height: 15vh;
+        background-image: url("/assets/contact.jpg");
+        margin: 0;
+        padding: 20px;
+        ${tablet({ height: "20vh" })}
+      }
+      h4 {
+        color: rgba(30, 51, 187, 1);
+      }
+      .address {
+        margin: 20px;
+        font-weight: 500;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 20px;
+      }
+      .address h2 {
+        color: rgba(30, 51, 187, 1);
+      }
+      .form {
+        background-image: url("/assets/form.jpg");
+        padding: 30px;
+        border-radius: 10px;
+        color: rgba(30, 51, 187, 1);
+      }
+      .form label {
+        font-size: 20px;
+        font-weight: 500;
       }
     `;
     return (
       <Wrapper>
-        <div className="container py-3">
-          <h2>You can call our office line</h2>
-          <p>Available 8.00 am to 5.00pm Mon</p>
-          <section className="">
-            <h3>Phone</h3>
-            <span>
-              <img src="/assets/call2.png" alt="" height="50" width="50" />
-            </span>
+        <div className="contact">
+          <h4>
+            <Link style={{ textDecoration: "none", color: "inherit" }} to="/">
+              Home
+            </Link>{" "}
+            -- Contact
+          </h4>
+        </div>
+        <div className="address">
+          <h2>Office Address</h2>
+          <p>No 14 Gida Steeet Lekki Phase One</p>
+          <p>Lagos, Nigeria</p>
+          <div className="tel">
             <Link
               to="tel:#"
               style={{
                 textDecoration: "none",
                 color: "inherit",
                 fontSize: "1rem",
-                marginLeft: "20px",
               }}
             >
-              <p>tel +23498200****</p>
+              <p>Tel: +2349037779547</p>
             </Link>
-          </section>
-
-          <div className="container mt-3">
-            <h3>Email our us here</h3>
+          </div>
+          <p>Email: bwayng@yahoo.com</p>
+        </div>
+        <div className="container py-5">
+          <div className="form">
+            <h3 className="text-center mb-2">Send Us your Enquiry</h3>
             <form method="post" action="/contact">
               <div className="mb-3">
                 <label className="form-label">Name</label>

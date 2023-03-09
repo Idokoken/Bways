@@ -9,11 +9,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../redux/action";
 
 const Wrapper = styled.div`
+  min-height: 50vh;
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(92, 122, 169, 1),
+    white,
+    white,
+    rgba(92, 122, 169, 1)
+  );
+
   .row {
     display: grid;
     grid-template-columns: 50% 50%;
     gap: 5px;
-    margin: 1rem;
+    padding: 1rem;
+
     ${tablet({ gridTemplateColumns: "25% 25% 25% 25%" })}
   }
 
@@ -27,13 +37,13 @@ const Wrapper = styled.div`
   }
   img {
     border-radius: 0.5rem;
-    max-width: 29rem;
     width: 100%;
+    height: 100%;
   }
   .image-container {
-    height: 200px;
+    height: 150px;
     background-color: white;
-    ${tablet({ height: "250px" })}
+    ${tablet({ height: "200px" })}
   }
   .card-body {
     margin: 0;
@@ -41,11 +51,26 @@ const Wrapper = styled.div`
   }
   h3 {
     font-size: 1.2rem;
-    padding: 1rem 0;
+    padding-top: 1rem;
+    padding-bottom: 8px;
   }
   h4 {
     font-size: 1rem;
     padding: 0.5rem 0;
+  }
+  .price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .price h4 {
+    margin: 0;
+    font-size: 14px;
+  }
+  .add {
+    background-color: rgba(000, 000, 000, 0.8) !important;
+    color: white;
+    padding: 4px 10px;
   }
   .rating span {
     color: #f0c040;
@@ -54,6 +79,10 @@ const Wrapper = styled.div`
   }
   .rating span:last-child {
     color: #404040;
+  }
+  .content {
+    margin: 0;
+    padding: 20px;
   }
 `;
 function Products() {
@@ -72,7 +101,7 @@ function Products() {
         <div className="card" key={item._id}>
           <NavLink
             to={`/product/${item._id}`}
-            style={{ textDecoration: "none" }}
+            style={{ textDecoration: "none", color: "rgba(30, 51, 187, 1)" }}
           >
             <div className="image-container">
               <img src={item.image} alt={item.name} />
@@ -82,30 +111,29 @@ function Products() {
             </div>
           </NavLink>
           <Rating rating={item.rating} numReviews={item.numReviews} />
-          <div className="price">
+          <div className="price my-2">
             <h4>${item.price}</h4>
+            <div className="add btn">Add to Cart</div>
           </div>
         </div>
       );
     });
 
   return (
-    <>
-      <Wrapper>
-        <div className="row">
-          {loading ? (
-            <LoadingBox />
-          ) : error ? (
-            <MessageBox>{error}</MessageBox>
-          ) : (
-            <>{items}</>
-          )}
-        </div>
-        <div className="content mx-3">
-          <h4>others things</h4>
-        </div>
-      </Wrapper>
-    </>
+    <Wrapper>
+      <div className="row">
+        {loading ? (
+          <LoadingBox />
+        ) : error ? (
+          <MessageBox>{error}</MessageBox>
+        ) : (
+          <>{items}</>
+        )}
+      </div>
+      <div className="content mx-3">
+        <h4>others things</h4>
+      </div>
+    </Wrapper>
   );
 }
 

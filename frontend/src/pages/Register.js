@@ -4,18 +4,20 @@ import { tablet } from "../Responsive";
 import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
-  min-height: 80vh;
+  min-height: 60vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(214, 220, 226, 0.5);
 
   .content {
-    background-color: rgba(37, 34, 34, 0.2);
+    background-image: url("/assets/wall.jpg");
     min-height: 400px;
     width: 70%;
     padding: 20px;
+    margin: 30px;
     border-radius: 20px;
+    color: white;
     ${tablet({ width: "50%" })}
   }
   .head {
@@ -32,7 +34,7 @@ const Wrapper = styled.div`
   label,
   h3 {
     font-weight: 600;
-    color: green;
+    color: white;
   }
   input {
     border-radius: 20px;
@@ -87,9 +89,7 @@ function Register() {
         <p className="my-3">
           Already a member?{" "}
           <Link to="/signin" style={{ textDecoration: "none" }}>
-            <span style={{ fontStyle: "italic", color: "darkblue" }}>
-              login
-            </span>
+            <span style={{ fontStyle: "italic", color: "yellow" }}>login</span>
           </Link>
         </p>
       </div>

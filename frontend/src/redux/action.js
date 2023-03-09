@@ -24,9 +24,6 @@ export const listProducts = () => async (dispatch) => {
 };
 
 export const productDetail = (id) => async (dispatch) => {
-  dispatch({
-    type: PRODUCT_LIST_REQUEST,
-  });
   try {
     const resp = await axios.get(`/product/${id}`);
     dispatch({
@@ -36,7 +33,10 @@ export const productDetail = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_LIST_FAIL,
-      payload: error.message,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
   }
 };

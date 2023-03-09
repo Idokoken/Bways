@@ -21,7 +21,7 @@ const Wrapper = styled.footer`
     ${tablet({ flex: "25%" })}
   }
   .footer .item h3 {
-    color: green;
+    color: rgba(30, 51, 187, 1);
   }
   .rule {
     border: 4px solid white;

@@ -34,8 +34,8 @@ function Header() {
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink className="nav-link" to="/products">
-                  products
+                <NavLink className="nav-link" to="/product">
+                  Products
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -45,7 +45,7 @@ function Header() {
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/contact">
-                  contact
+                  Contact
                 </NavLink>
               </li>
             </ul>

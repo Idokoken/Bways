@@ -7,9 +7,13 @@ const Wrapper = styled.div`
   padding: 20px;
   background-color: #dee6e8;
   background-image: url("/assets/letter_bg.jpg");
+  background-size: cover;
+  color: white;
 
   h4 {
     margin-bottom: 20px;
+    font-family: "Times New Roman", Times, serif;
+    /* margin-top: 5px; */
   }
   div {
     display: flex;

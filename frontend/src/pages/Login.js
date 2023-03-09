@@ -11,11 +11,13 @@ const Wrapper = styled.div`
   background-color: rgba(214, 220, 226, 0.5);
 
   .content {
-    background-color: rgba(37, 34, 34, 0.2);
+    background-image: url("/assets/wall.jpg");
     min-height: 400px;
     width: 70%;
     padding: 20px;
+    margin: 30px;
     border-radius: 20px;
+    color: white;
     ${tablet({ width: "50%" })}
   }
   .head {
@@ -32,7 +34,7 @@ const Wrapper = styled.div`
   label,
   h3 {
     font-weight: 600;
-    color: green;
+    color: white;
   }
   input {
     border-radius: 20px;
@@ -78,7 +80,7 @@ function Login() {
         <p className="my-3">
           Not yet a member?{" "}
           <Link to="/register" style={{ textDecoration: "none" }}>
-            <span style={{ fontStyle: "italic", color: "darkblue" }}>
+            <span style={{ fontStyle: "italic", color: "yellow" }}>
               register
             </span>
           </Link>
