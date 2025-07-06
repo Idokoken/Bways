@@ -1,9 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 
 function Header() {
-  const cart = useSelector((state) => state.products);
+  // const cart = useSelector((state) => state.products);
 
   return (
     <header>
@@ -11,7 +10,7 @@ function Header() {
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             <img
-              src="/assets/brand.png"
+              src="/images/brand.png"
               alt=""
               width="30"
               height="30"

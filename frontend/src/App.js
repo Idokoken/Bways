@@ -6,15 +6,15 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ErrorPage from "./pages/ErrorPage";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 import Product from "./components/Product";
 import Products from "./components/Products";
+import ScrollToTop from './ScrollToTop';
+
 
 function App() {
   return (
     <Router>
-      <Header />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<Products />} />
@@ -26,7 +26,6 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
-      <Footer />
     </Router>
   );
 }

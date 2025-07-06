@@ -5,12 +5,13 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const indexRouter = require("./routes/indexRouter");
 const authRouter = require("./routes/authRouter");
+const userRouter = require("./routes/userRouter");
 const productRouter = require("./routes/productRouter");
 
 require("dotenv").config();
 
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 8000;
 
 // database setup
 mongoose.connect(process.env.MONGO_URI, {
@@ -34,6 +35,7 @@ app.use(express.urlencoded({ extended: true }));
 // Route setup
 app.use("/", indexRouter);
 app.use("/auth", authRouter);
-app.use("/product", productRouter);
+app.use("/users", userRouter);
+app.use("/products", productRouter);
 
-app.listen(port, () => console.log("listening on port " + chalk.magenta(8086)));
+app.listen(port, () => console.log("listening on port " + chalk.magenta(8000)));

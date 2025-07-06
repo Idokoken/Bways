@@ -50,7 +50,7 @@ function Register() {
     <Wrapper>
       <div className="content">
         <div className="head">
-          <img src="/assets/brand.png" alt="brand" width="50" height="50" />
+          <img src="/images/brand.png" alt="brand" width="50" height="50" />
           <h3 className="my-2">Register</h3>
         </div>
         <form>

@@ -1,18 +1,17 @@
 const express = require("express");
-const data = require("../src/data");
+const { createProduct, getOneProduct, getAllProducts, updateProduct,
+  deleteProduct } = require("../controller/productController")
+// const uploads = require("../middleware/uploadsCloudinary")
+const uploads = require("../middleware/multer")
 
-const productRouter = express.Router();
+const productRoute = express.Router()
 
-//get all products
-productRouter.get("/", (req, res) => {
-  res.json(data);
-  //   console.log(data);
-});
+productRoute.post("/", uploads.fields([{ name: "image1", maxCount: 1 },
+{ name: "image2", maxCount: 1 }, { name: "image3", maxCount: 1 }, { name: "image4", maxCount: 1 }]),
+  createProduct);
+productRoute.get("/:id", getOneProduct)
+productRoute.get("/", getAllProducts)
+productRoute.put("/:id", updateProduct)
+productRoute.delete("/:id", deleteProduct)
 
-//get one product
-productRouter.get("/:id", (req, res) => {
-  const product = data.find((item, i) => item._id === req.params.id);
-  res.json(product);
-});
-
-module.exports = productRouter;
+module.exports = productRoute

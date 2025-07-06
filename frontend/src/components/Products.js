@@ -1,29 +1,23 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Rating from "./Rating";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { tablet } from "../Responsive";
-import LoadingBox from "./LoadingBox";
-import MessageBox from "./MessageBox";
-import { useDispatch, useSelector } from "react-redux";
-import { listProducts } from "../redux/action";
+// import LoadingBox from "./LoadingBox";
+// import MessageBox from "./MessageBox";
+import { Data } from "../configs/data";
 
 const Wrapper = styled.div`
   min-height: 50vh;
-  background-image: linear-gradient(
-    to bottom right,
-    rgba(92, 122, 169, 1),
-    white,
-    white,
-    rgba(92, 122, 169, 1)
-  );
+  margin: 0;
+  padding: 0;
 
   .row {
     display: grid;
     grid-template-columns: 50% 50%;
     gap: 5px;
     padding: 1rem;
-
+    margin: 30px;
     ${tablet({ gridTemplateColumns: "25% 25% 25% 25%" })}
   }
 
@@ -34,6 +28,7 @@ const Wrapper = styled.div`
     border: 0.1rem #c0c0c0 solid;
     background-color: #f8f8f8;
     border-radius: 0.5rem;
+    padding: 0;
   }
   img {
     border-radius: 0.5rem;
@@ -47,12 +42,16 @@ const Wrapper = styled.div`
   }
   .card-body {
     margin: 0;
-    padding: 0;
+    padding: 0 10px;
+  }
   }
   h3 {
     font-size: 1.2rem;
-    padding-top: 1rem;
+    padding-top: 8px;
     padding-bottom: 8px;
+    margin-bottom: 0;
+    font-size: 16px;
+    ${tablet({ fontSize: "20px" })}
   }
   h4 {
     font-size: 1rem;
@@ -62,15 +61,21 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 8px 5px; 
+    font-size: 12px;
+    ${tablet({ fontSize: "16px" })}
   }
   .price h4 {
     margin: 0;
-    font-size: 14px;
+    font-size: 12px;
+    ${tablet({ fontSize: "14px" })}
   }
   .add {
     background-color: rgba(000, 000, 000, 0.8) !important;
     color: white;
     padding: 4px 10px;
+    font-size: 12px;
+    ${tablet({ fontSize: "16px" })}
   }
   .rating span {
     color: #f0c040;
@@ -85,18 +90,14 @@ const Wrapper = styled.div`
     padding: 20px;
   }
 `;
-function Products() {
-  const dispatch = useDispatch();
-  const productlist = useSelector((state) => state.productlist);
-  const { loading, error, products } = productlist;
 
-  useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch]);
+
+function Products() {
+
 
   const items =
-    products &&
-    products.map((item, i) => {
+    Data &&
+    Data.map((item, i) => {
       return (
         <div className="card" key={item._id}>
           <NavLink
@@ -122,16 +123,19 @@ function Products() {
   return (
     <Wrapper>
       <div className="row">
-        {loading ? (
-          <LoadingBox />
-        ) : error ? (
-          <MessageBox>{error}</MessageBox>
-        ) : (
+        {
+          //     loading?(
+          //   <LoadingBox />
+          // ) : error ? (
+          // <MessageBox>{error}</MessageBox>
+          // ) : 
+
           <>{items}</>
-        )}
+
+        }
       </div>
       <div className="content mx-3">
-        <h4>others things</h4>
+        <h4>Others things</h4>
       </div>
     </Wrapper>
   );

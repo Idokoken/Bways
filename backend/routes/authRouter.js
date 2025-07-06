@@ -1,16 +1,11 @@
-const express = require("express");
-const jwt = require("jsonwebtoken");
-const User = require("../models/authModel");
+const express = require("express")
+const { registerUser, loginUser, adminLogin } = require("../controller/authController");
 
-const authRouter = express.Router();
+const authRoute = express.Router();
 
-//register user
-authRouter.post(async (req, res) => {
-  try {
-    res.status(200).json("hello");
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
+authRoute.post("/register", registerUser);
+authRoute.post("/login", loginUser);
+authRoute.post("/admin", adminLogin);
 
-module.exports = authRouter;
+
+module.exports = authRoute;

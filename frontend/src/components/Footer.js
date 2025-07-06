@@ -80,7 +80,7 @@ function Footer() {
         </div>
         <div className="item brand">
           <div className="icon-header">
-            <img src="/assets/brand.png" alt="brand" />{" "}
+            <img src="/images/brand.png" alt="brand" />{" "}
             <h3 className="ms-2">Bways</h3>
           </div>
           <h4>Follow Us</h4>
@@ -94,14 +94,14 @@ function Footer() {
             <div className="mobile">
               <Link to="/" className="me-3">
                 <img
-                  src="/assets/apple.jpg"
+                  src="/images/apple.jpg"
                   className="mobile-img"
                   alt="mobile"
                 />
               </Link>
               <Link to="/">
                 <img
-                  src="/assets/google.jpg"
+                  src="/images/google.jpg"
                   className="mobile-img"
                   alt="mobile"
                 />
@@ -111,7 +111,10 @@ function Footer() {
         </div>
       </div>
       <hr className="rule" />
-      <p className="copywite">All Right reversed &copy; Bways 2023 </p>
+      <p className="copywite">
+        All Right reversed &copy; Bways {new Date().getFullYear()}
+
+      </p>
     </Wrapper>
   );
 }

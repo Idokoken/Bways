@@ -4,11 +4,13 @@ import styled from "styled-components";
 import { tablet } from "../Responsive";
 
 const Wrapper = styled.div`
-  min-height: 80vh;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(214, 220, 226, 0.5);
+  font-family: "Poppins", sans-serif;
+  background: rgb(198, 208, 206);
 
   .content {
     background-image: url("/assets/wall.jpg");
@@ -45,12 +47,13 @@ const Wrapper = styled.div`
   }
 `;
 
+
 function Login() {
   return (
     <Wrapper>
       <div className="content">
         <div className="head">
-          <img src="/assets/brand.png" alt="brand" width="50" height="50" />
+          <img src="/images/brand.png" alt="brand" width="50" height="50" />
           <h3 className="my-2">Login</h3>
         </div>
         <form>

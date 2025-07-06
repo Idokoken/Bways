@@ -1,23 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { useParams, NavLink } from "react-router-dom";
+import React from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Rating from "./Rating";
 import { tablet } from "../Responsive";
-import { useDispatch, useSelector } from "react-redux";
-import Products from "./Products";
-import LoadingBox from "./LoadingBox";
-import MessageBox from "./MessageBox";
-import { productDetail } from "../redux/action";
+
+// import LoadingBox from "./LoadingBox";
+// import MessageBox from "./MessageBox";
+import { Data } from "../configs/data";
 
 const Wrapper = styled.div`
   min-height: 50vh;
-  background-image: linear-gradient(
-    to bottom right,
-    rgba(92, 122, 169, 1),
-    white,
-    white,
-    rgba(92, 122, 169, 1)
-  );
+  font-family: var(--primary-font);
+  background: var(--bg-color);
 
   .row {
     width: 100%;
@@ -91,15 +85,11 @@ const Wrapper = styled.div`
 
 function Product(props) {
   const { id } = useParams();
-  const [qty, setQty] = useState(1);
+  // const [qty, setQty] = useState(1);
 
-  const dispatch = useDispatch();
-  const singleProduct = useSelector((state) => state.singleProduct);
-  const { loading, error, product } = singleProduct;
+  const product = Data.find((a, i) => a._id === id)
 
-  useEffect(() => {
-    dispatch(productDetail(id));
-  }, [dispatch, id]);
+
 
   // const handleAddToCart = () => {
   //   props.history.push(`/cart/${id}?qty={qty}`);
@@ -107,53 +97,54 @@ function Product(props) {
 
   return (
     <Wrapper>
-      {loading ? (
+
+      {/* { {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
         <MessageBox>{error}</MessageBox>
-      ) : (
-        product && (
-          <>
-            <div className="row">
-              <div className="img-container">
-                <img src={product.image} alt={product.name} />
+      ) : ( 
+      product && ( */}
+      <>
+        <div className="row">
+          <div className="img-container">
+            <img src={product.image} alt={product.name} />
+          </div>
+          <div className="content">
+            <div className="desc">
+              <h4>Addidas Fit Shirt</h4>
+              <Rating
+                rating={product.rating}
+                numReviews={product.numReviews}
+              />
+              <div className="price">
+                <p>Price: ${product.price}</p>
+                <p>Description: {product.description}</p>
               </div>
-              <div className="content">
-                <div className="desc">
-                  <h4>Addidas Fit Shirt</h4>
-                  <Rating
-                    rating={product.rating}
-                    numReviews={product.numReviews}
-                  />
-                  <div className="price">
-                    <p>Price: ${product.price}</p>
-                    <p>Description: {product.description}</p>
-                  </div>
-                </div>
-                <div className="addtocart">
-                  <p>Seller</p>
-                  <p>{product.brand}</p>
-                  <Rating
-                    rating={product.rating}
-                    numReviews={product.numReviews}
-                  />
-                  <p>
-                    Price <span>${product.price}</span>
-                  </p>
-                  <p className="status">
-                    Status{" "}
-                    {product.countInStock > 0 ? (
-                      <span className="text-success text-right">In Stock</span>
-                    ) : (
-                      <span className="text-danger text-right">
-                        Unavailable
-                      </span>
-                    )}
-                  </p>
-                  <div className="qty">
-                    <div>Qty</div>
-                    <div>
-                      {/* <select
+            </div>
+            <div className="addtocart">
+              <p>Seller</p>
+              <p>{product.brand}</p>
+              <Rating
+                rating={product.rating}
+                numReviews={product.numReviews}
+              />
+              <p>
+                Price <span>${product.price}</span>
+              </p>
+              <p className="status">
+                Status{" "}
+                {product.countInStock > 0 ? (
+                  <span className="text-success text-right">In Stock</span>
+                ) : (
+                  <span className="text-danger text-right">
+                    Unavailable
+                  </span>
+                )}
+              </p>
+              <div className="qty">
+                <div>Qty</div>
+                <div>
+                  {/* <select
                         value={qty}
                         onChange={(e) => setQty(e.target.value)}
                       >
@@ -163,22 +154,22 @@ function Product(props) {
                           </option>
                         ))}
                       </select> */}
-                    </div>
-                  </div>
-                  {product.countInStock > 0 && (
-                    <>
-                      <button>Add to Cart</button>
-                    </>
-                  )}
                 </div>
               </div>
+              {product.countInStock > 0 && (
+                <>
+                  <button>Add to Cart</button>
+                </>
+              )}
             </div>
-          </>
-        )
-      )}
-      <div className="related">
+          </div>
+        </div>
+      </>
+
+
+      <div className="related container py-3">
         <h4>Related Products</h4>
-        <div className="relateditem">products</div>
+        <div className="relateditem">Products</div>
       </div>
     </Wrapper>
   );

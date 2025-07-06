@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   padding: 20px;
   background-color: #dee6e8;
-  background-image: url("/assets/letter_bg.jpg");
+  background-image: url("/images/letter_bg.jpg");
   background-size: cover;
   color: white;
 
