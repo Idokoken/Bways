@@ -3,15 +3,16 @@ const { createProduct, getOneProduct, getAllProducts, updateProduct,
   deleteProduct } = require("../controller/productController")
 // const uploads = require("../middleware/uploadsCloudinary")
 const uploads = require("../middleware/multer")
+const { adminAuth } = require("../middleware/adminAuth")
 
 const productRoute = express.Router()
 
-productRoute.post("/", uploads.fields([{ name: "image1", maxCount: 1 },
+productRoute.post("/", adminAuth, uploads.fields([{ name: "image1", maxCount: 1 },
 { name: "image2", maxCount: 1 }, { name: "image3", maxCount: 1 }, { name: "image4", maxCount: 1 }]),
   createProduct);
 productRoute.get("/:id", getOneProduct)
 productRoute.get("/", getAllProducts)
-productRoute.put("/:id", updateProduct)
-productRoute.delete("/:id", deleteProduct)
+productRoute.put("/:id", adminAuth, updateProduct)
+productRoute.delete("/:id", adminAuth, deleteProduct)
 
 module.exports = productRoute
