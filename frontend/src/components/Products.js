@@ -30,15 +30,17 @@ const Wrapper = styled.div`
     border-radius: 0.5rem;
     padding: 0;
   }
-  img {
-    border-radius: 0.5rem;
-    width: 100%;
-    height: 100%;
-  }
+ 
   .image-container {
     height: 150px;
     background-color: white;
     ${tablet({ height: "200px" })}
+  }
+   img {
+    border-radius: 0.5rem;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  
   }
   .card-body {
     margin: 0;
@@ -91,10 +93,7 @@ const Wrapper = styled.div`
   }
 `;
 
-
 function Products() {
-
-
   const items =
     Data &&
     Data.map((item, i) => {
@@ -128,10 +127,9 @@ function Products() {
           //   <LoadingBox />
           // ) : error ? (
           // <MessageBox>{error}</MessageBox>
-          // ) : 
+          // ) :
 
           <>{items}</>
-
         }
       </div>
       <div className="content mx-3">

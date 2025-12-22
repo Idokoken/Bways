@@ -7,7 +7,7 @@ const Wrapper = styled.footer`
   background-color: black;
   padding: 0;
   margin: 0;
-  color: white;
+  color: rgba(255, 255, 255, 0.8);
 
   .footer {
     width: 100vw;
@@ -22,6 +22,18 @@ const Wrapper = styled.footer`
   }
   .footer .item h3 {
     color: rgba(30, 51, 187, 1);
+    margin-bottom: 15px;
+  }
+  .footer .item a{
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: 10px;
+    font-size: 18px;  
+  }
+  .footer .item a:hover{
+     font-weight: 700;
+     color: rgba(30, 51, 187, 0.6);
   }
   .rule {
     border: 4px solid white;
@@ -30,26 +42,50 @@ const Wrapper = styled.footer`
     text-align: center;
     padding-bottom: 20px;
   }
-  img {
-    width: 30px;
-    height: 30px;
+  .brand-img{
+       width: 30px;
+       height: 30px;
   }
+  
   .brand {
     align-self: flex-start;
   }
   .icon-header {
     display: flex;
   }
-  .icon {
+  .icons-container{
+    display: flex;
+  }
+  .icons-container span{
+    border: 2px solid white;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
     margin-right: 20px;
+    border-radius: 10px;
+  }
+  .icon {
+
+  }
+  .mobile{
+     display: flex;
+  }
+  .mobile a{
+     height: 30px;
+     width: 90px; 
   }
   .mobile-img {
-    height: 30px;
-    width: 90px;
     border-radius: 5px;
+    height: 100%;
+    width: 100%; 
+    boject-fit: contain;
   }
   .mobile-container p {
     margin-bottom: 10px;
+    margin-top: 10px;
   }
 `;
 
@@ -59,35 +95,35 @@ function Footer() {
       <div className="footer">
         <div className="item">
           <h3>SERVICES</h3>
-          <p>Accessibility</p>
-          <p>Disclamers</p>
-          <p>Sitemap</p>
-          <p>Cookies </p>
+          <Link to="/">Accessibility</Link>
+          <Link to="/">Disclamers</Link>
+          <Link to="/">Sitemap</Link>
+          <Link to="/">Cookies </Link>
         </div>
         <div className="item">
           <h3>RESOURCES</h3>
-          <p>Blog</p>
-          <p>Online training</p>
-          <p>Qaulity for government contact</p>
-          <p>National resource Guide</p>
+          <Link to="/">Blog</Link>
+          <Link to="/">Online training</Link>
+          <Link to="/">Qaulity for government contact</Link>
+          <Link to="/">National resource Guide</Link>
         </div>
         <div className="item">
-          <h3>OUR COMPNY</h3>
-          <p>Contact us</p>
-          <p>Privacy policy</p>
-          <p>User agreement</p>
-          <p>Privacy</p>
+          <h3>OUR COMPANY</h3>
+          <Link to="/">Contact us</Link>
+          <Link to="/">Privacy policy</Link>
+          <Link to="/">User agreement</Link>
+          <Link to="/">Privacy</Link>
         </div>
         <div className="item brand">
           <div className="icon-header">
-            <img src="/images/brand.png" alt="brand" />{" "}
+            <img src="/images/brand.png" alt="brand" className="brand-img" />{" "}
             <h3 className="ms-2">Bways</h3>
           </div>
           <h4>Follow Us</h4>
           <div className="icons-container">
-            <i className="fa-brands fa-facebook icon"></i>
-            <i className="fa-brands fa-twitter icon"></i>
-            <i className="fa-brands fa-instagram icon"></i>
+            <span><i className="fa-brands fa-facebook icon"></i></span>
+            <span><i className="fa-brands fa-twitter icon"></i></span>
+            <span><i className="fa-brands fa-instagram icon"></i></span>
           </div>
           <div className="mobile-container mt-4">
             <p>Mobile</p>
