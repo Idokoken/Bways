@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { tablet } from "../Responsive";
+import brand from "../assets/brand.png"
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -10,7 +11,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   font-family: "Poppins", sans-serif;
-  background: rgb(198, 208, 206);
+  background-color: #000000;
 
   .content {
     background-image: url("/assets/wall.jpg");
@@ -53,7 +54,7 @@ function Login() {
     <Wrapper>
       <div className="content">
         <div className="head">
-          <img src="/images/brand.png" alt="brand" width="50" height="50" />
+          <img src={brand} alt="brand" width="50" height="50" />
           <h3 className="my-2">Login</h3>
         </div>
         <form>

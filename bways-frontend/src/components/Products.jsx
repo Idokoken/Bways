@@ -118,9 +118,9 @@ function Products() {
 
   return (
     <Wrapper>
-      {/* <div className="row">
+      <div className="row">
         <>{items}</>
-      </div> */}
+      </div>
       <div className="content mx-3">
         <h4>Others things</h4>
       </div>

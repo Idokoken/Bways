@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { tablet } from "../Responsive";
+import Header from "../components/Header";
+import Footer from "../components/Footer"
 
 const Wrapper = styled.div`
   margin: 0;
@@ -72,40 +74,46 @@ function Cart(props) {
   // const qty = props.location.search ? Number(props.location.split("=")[1]) : 1;
 
   return (
-    <Wrapper>
-      <h2>Cart screen</h2>
-      {/* <p>
+    <>
+      <Header />
+
+      <Wrapper>
+        <h2>Cart screen</h2>
+        {/* <p>
           ADD TO CART: productID: {productId} Qty: {qty}
         </p> */}
-      <div className="content">
-        <div className="cart">
-          <div className="cart-items">
-            <div className="img-container">
-              <img src="/items/main.jpg" alt="product icon" />
+        <div className="content">
+          <div className="cart">
+            <div className="cart-items">
+              <div className="img-container">
+                <img src="images/items/project1.jpg" alt="product icon" />
+              </div>
+              <p className="name">Name of item</p>
+              <input type="number" />
+              <p className="price">$904</p>
+              <button className="btn btn-danger del">Delete</button>
             </div>
-            <p className="name">Name of item</p>
-            <input type="number" />
-            <p className="price">$904</p>
-            <button className="btn btn-danger del">Delete</button>
+            <div className="cart-items">
+              <div className="img-container">
+                <img src="/images/items/project2.jpg" alt="product icon" />
+              </div>
+              <p className="name">Name of item</p>
+              <input type="number" />
+              <p className="price">$904</p>
+              <button className="btn btn-danger del">Delete</button>
+            </div>
           </div>
-          <div className="cart-items">
-            <div className="img-container">
-              <img src="/items/main.jpg" alt="product icon" />
-            </div>
-            <p className="name">Name of item</p>
-            <input type="number" />
-            <p className="price">$904</p>
-            <button className="btn btn-danger del">Delete</button>
+          <div className="summary">
+            <p className="total">
+              Subtotal(9 items): $<span>180</span>
+            </p>
+            <button className="btn btn-info">Proceed to Checkout</button>
           </div>
         </div>
-        <div className="summary">
-          <p className="total">
-            Subtotal(9 items): $<span>180</span>
-          </p>
-          <button className="btn btn-info">Proceed to Checkout</button>
-        </div>
-      </div>
-    </Wrapper>
+      </Wrapper>
+
+      <Footer />
+    </>
   );
 }
 

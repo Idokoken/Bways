@@ -6,7 +6,7 @@ import { tablet } from "../Responsive";
 
 // import LoadingBox from "./LoadingBox";
 // import MessageBox from "./MessageBox";
-import { Data } from "../configs/data";
+import { Data } from "../config/data";
 
 const Wrapper = styled.div`
   min-height: 50vh;

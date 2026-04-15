@@ -112,7 +112,7 @@ function Footer() {
           <Link to="/contact-us">Contact</Link>
           <Link to="/about-us">About Us</Link>
           <Link to="/privacy-policy">Privacy policy</Link>
-          <Link to="/">User agreement</Link>
+          <Link to="/terms-and-conditions">User agreement</Link>
 
         </div>
         <div className="item brand">

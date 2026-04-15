@@ -2,13 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { tablet } from "../Responsive";
 import { Link } from "react-router-dom";
+import brand from "../assets/brand.png"
 
 const Wrapper = styled.div`
   min-height: 60vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(214, 220, 226, 0.5);
+  background-color: #000000;
 
   .content {
     background-image: url("/assets/wall.jpg");
@@ -50,7 +51,7 @@ function Register() {
     <Wrapper>
       <div className="content">
         <div className="head">
-          <img src="/images/brand.png" alt="brand" width="50" height="50" />
+          <img src={brand} alt="brand" width="50" height="50" />
           <h3 className="my-2">Register</h3>
         </div>
         <form>
