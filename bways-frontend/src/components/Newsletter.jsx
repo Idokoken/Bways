@@ -33,15 +33,25 @@ const Wrapper = styled.div`
 `;
 
 function Newsletter() {
+  const handleSubmit = (event) => {
+    event.preventDefault()
+  }
+
   return (
-    <Wrapper>
-      <h4>Get personalized insights on products to your inbox</h4>
-      <div>
-        <input type="email" placeholder="enter email" />
-        <button>Subscribe</button>
+    <>
+      <div className="text-center my-3">
+        <p className="text-2xl font-medium text-gray-800 ">Subscribe Now and Get 20% OFF </p>
+        <p className="text-gray-400 mt-3 "> Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Eum, itaque.
+        </p>
+        <form onSubmit={handleSubmit} className="w-full sm:w-1/2 flex items-center gap-3 mx-auto my-6 border pl-3">
+          <input className="w-full sm:flex-1 outline-none" type="email" name="email" id="email"
+            placeholder="Enter Your Email" required />
+          <button type="submit" className="bg-black text-white text-xs px-10 py-4">SUBSCRIBE</button>
+        </form>
       </div>
-    </Wrapper>
-  );
+    </>
+  )
 }
 
 export default Newsletter;

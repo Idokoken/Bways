@@ -3,6 +3,11 @@ import Products from "../components/Products";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import styled from "styled-components";
+import Hero from "../components/Hero";
+import LatestCollection from "../components/LatestCollection";
+import BestSeller from "../components/BestSeller";
+import OurPolicy from "../components/OurPolicy";
+import Newsletter from "../components/Newsletter";
 
 
 const Wrapper = styled.div`
@@ -16,7 +21,12 @@ function Home() {
     <>
       <Header />
       <Wrapper>
-        <Products />
+        <Hero />
+        <LatestCollection />
+        {/* <Products /> */}
+        <BestSeller />
+        <OurPolicy />
+        <Newsletter />
       </Wrapper>
       <Footer />
     </>

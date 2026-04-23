@@ -32,7 +32,7 @@ function App() {
           <Route path="/contact-us" element={<Contact />} />
           <Route path="/about-us" element={<About />} />
 
-          <Route path="/collection" exact element={<Collection />} />
+          <Route path="/collection" element={<Collection />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
           <Route path="/cart" element={<Cart />} />
