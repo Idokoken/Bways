@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const { Schema } = mongoose;
 
 const userSchema = new Schema(
@@ -8,10 +7,10 @@ const userSchema = new Schema(
     username: { type: String, required: true },
     password: { type: String, required: true },
     confirmPassword: { type: String },
-    cartdata: { type: Object, default: {} }
+    cartData: { type: Object, default: {} }
 
   }, { minimize: false },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.models.User || mongoose.model("User", userSchema);

@@ -7,6 +7,7 @@ const indexRouter = require("./routes/indexRouter");
 const authRouter = require("./routes/authRouter");
 const userRouter = require("./routes/userRouter");
 const productRouter = require("./routes/productRouter");
+const connectCloudinary = require("./middleware/uploadsCloudinary");
 
 require("dotenv").config();
 
@@ -20,11 +21,14 @@ mongoose.connect(process.env.MONGO_URI, {
 });
 const db = mongoose.connection;
 db.on("error", () =>
-  console.log(`${chalk.magenta("error connecting to Bways database")}`)
+  console.log(`${chalk.magenta("error connecting to Bways database")}`),
 );
 db.once("open", () =>
-  console.log(`${chalk.magenta("connected to Bways database successfully")}`)
+  console.log(`${chalk.magenta("connected to Bways database successfully")}`),
 );
+
+//cloudinary image upload setup
+connectCloudinary();
 
 //middleware setup
 app.use(morgan("dev"));

@@ -7,16 +7,23 @@ const validator = require("validator")
 require("dotenv").config();
 
 
+const createToken  = (id) => {
+return jwt.sign({id}, process.env.JWT_SECRET)
+}
+
 exports.registerUser = async (req, res) => {
     const { username, email, password } = req.body;
 
     try {
         const check = await User.findOne({ email });
         if (check) {
-            res.status(400).json("email already in use");
+            res.status(400).json({ success: false, message: "email already in use" });
         }
         if (!validator.isEmail(email)) {
             res.status(400).json({ success: false, msg: "invalid Email" })
+        }
+        if (password.length < 8) {
+            res.status(400).json({ success: false, msg: "password must be at least 8 Characters" })
         }
         {
             let salt = bcrypt.genSaltSync(10);
@@ -30,16 +37,14 @@ exports.registerUser = async (req, res) => {
                     // email: newUser.email
                 },
                 process.env.JWT_SECRET,
-                {
-                    expiresIn: process.env.JWT_EXPIRES_IN,
-                }
+                { expiresIn: process.env.JWT_EXPIRES_IN, }
             );
             // res.status(200).json({ success: true, msg: newUser });
             res.status(200).json({ success: true, token });
         }
     } catch (error) {
         console.log(error);
-        res.status(500).json({ msg: error.message });
+        res.status(500).json({ success: false, massage: error.message });
     }
 };
 
@@ -62,6 +67,8 @@ exports.loginUser = async (req, res) => {
                 expiresIn: process.env.JWT_EXPIRES_IN,
             }
         );
+
+       
         // res.cookie("token", token).json(user);
         //res.send("cookie sent");
         // res.status(200).json({ success: true, user, token });

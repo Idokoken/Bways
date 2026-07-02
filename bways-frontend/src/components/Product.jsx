@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Rating from "./Rating";
 import { tablet } from "../Responsive";
-
-// import LoadingBox from "./LoadingBox";
-// import MessageBox from "./MessageBox";
-import { Data } from "../config/data";
+import { ShopContext } from "../context/ShopContext";
+import star_icon from "../assets/star_icon.png";
 
 const Wrapper = styled.div`
   min-height: 50vh;
@@ -84,94 +82,139 @@ const Wrapper = styled.div`
 `;
 
 function Product(props) {
-  const { id } = useParams();
-  // const [qty, setQty] = useState(1);
+  const { productId } = useParams();
+  const { products } = useContext(ShopContext);
+  const [productData, setProductData] = useState(false);
+  const [image, setImage] = useState("");
 
-  const product = Data.find((a, i) => a._id === id)
-
-
+  const product = products.find((a, i) => a._id === productId);
 
   // const handleAddToCart = () => {
   //   props.history.push(`/cart/${id}?qty={qty}`);
   // };
 
-  return (
-    <Wrapper>
+  const fetchProductData = async () => {
+    products.map((item) => {
+      if (item._id === productId) {
+        setProductData(item);
+        setImage(item.image[0]);
+        console.log(item);
+        return null;
+      }
+    });
+  };
 
-      {/* { {loading ? (
-        <LoadingBox></LoadingBox>
-      ) : error ? (
-        <MessageBox>{error}</MessageBox>
-      ) : ( 
-      product && ( */}
-      <>
-        <div className="row">
-          <div className="img-container">
-            <img src={product.image} alt={product.name} />
-          </div>
-          <div className="content">
-            <div className="desc">
-              <h4>Addidas Fit Shirt</h4>
-              <Rating
-                rating={product.rating}
-                numReviews={product.numReviews}
-              />
-              <div className="price">
-                <p>Price: ${product.price}</p>
-                <p>Description: {product.description}</p>
-              </div>
+  useEffect(() => {
+    fetchProductData();
+  }, [productId]);
+
+  return productData ? (
+    // <Wrapper>
+    //   {/* { {loading ? (
+    //     <LoadingBox></LoadingBox>
+    //   ) : error ? (
+    //     <MessageBox>{error}</MessageBox>
+    //   ) : (
+    //   product && ( */}
+    //   <>
+    //     <div className="row">
+    //       <div className="img-container">
+    //         <img src={product.image} alt={product.name} />
+    //       </div>
+    //       <div className="content">
+    //         <div className="desc">
+    //           <h4>Addidas Fit Shirt</h4>
+    //           <Rating rating={product.rating} numReviews={product.numReviews} />
+    //           <div className="price">
+    //             <p>Price: ${product.price}</p>
+    //             <p>Description: {product.description}</p>
+    //           </div>
+    //         </div>
+    //         <div className="addtocart">
+    //           <p>Seller</p>
+    //           <p>{product.brand}</p>
+    //           <Rating rating={product.rating} numReviews={product.numReviews} />
+    //           <p>
+    //             Price <span>${product.price}</span>
+    //           </p>
+    //           <p className="status">
+    //             Status{" "}
+    //             {product.countInStock > 0 ? (
+    //               <span className="text-success text-right">In Stock</span>
+    //             ) : (
+    //               <span className="text-danger text-right">Unavailable</span>
+    //             )}
+    //           </p>
+    //           <div className="qty">
+    //             <div>Qty</div>
+    //             <div>
+    //               {/* <select
+    //                     value={qty}
+    //                     onChange={(e) => setQty(e.target.value)}
+    //                   >
+    //                     {[...Array(product.countInStock.keys())].map((x) => (
+    //                       <option key={x + 1} value={x + 1}>
+    //                         {x + 1}
+    //                       </option>
+    //                     ))}
+    //                   </select> */}
+    //             </div>
+    //           </div>
+    //           {product.countInStock > 0 && (
+    //             <>
+    //               <button>Add to Cart</button>
+    //             </>
+    //           )}
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </>
+
+    //   <div className="related container py-3">
+    //     <h4>Related Products</h4>
+    //     <div className="relateditem">Products</div>
+    //   </div>
+    // </Wrapper>
+
+    <div className="border-t-2 pt-10 transotion-opacity ease-in duration-500 opacity-100">
+      <div className="flex gap-12 sm:gap-12 flex-col sm:flex-row">
+        <div className="flex flex-1 flex-col-reverse gap-3 sm:flex-row">
+          <div className="flex-1 flex flex-col-reverse gap-3 sm:flex-grow">
+            <div
+              className="flex sm:flex-col overflow-x-auto sm:overflow-y-scroll 
+            justify-between sm:justify-normal sm:w-[18.7%] w-full"
+            >
+              {/* {productData.image.map((item, index) => {
+                <img
+                  onClick={() => setImage(image)}
+                  src={item}
+                  key={index}
+                  alt="item"
+                  className="w-[24%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer"
+                />;
+              })} */}
             </div>
-            <div className="addtocart">
-              <p>Seller</p>
-              <p>{product.brand}</p>
-              <Rating
-                rating={product.rating}
-                numReviews={product.numReviews}
-              />
-              <p>
-                Price <span>${product.price}</span>
-              </p>
-              <p className="status">
-                Status{" "}
-                {product.countInStock > 0 ? (
-                  <span className="text-success text-right">In Stock</span>
-                ) : (
-                  <span className="text-danger text-right">
-                    Unavailable
-                  </span>
-                )}
-              </p>
-              <div className="qty">
-                <div>Qty</div>
-                <div>
-                  {/* <select
-                        value={qty}
-                        onChange={(e) => setQty(e.target.value)}
-                      >
-                        {[...Array(product.countInStock.keys())].map((x) => (
-                          <option key={x + 1} value={x + 1}>
-                            {x + 1}
-                          </option>
-                        ))}
-                      </select> */}
-                </div>
-              </div>
-              {product.countInStock > 0 && (
-                <>
-                  <button>Add to Cart</button>
-                </>
-              )}
+            <div className="w-full sm:w-[80%]">
+              <img className="w-full h-auto" src={image} alt="" />
+            </div>
+          </div>
+          {/* Product Info */}
+          <div className="flex-1">
+            <h1 className="font-medium text-2xl mt-2">{productData.name}</h1>
+            <div className="flex items-center gap-1 mt-2">
+              <img src={star_icon} alt="star_icon" className="w-3 5" />
+              <img src={star_icon} alt="star_icon" className="w-3 5" />
+              <img src={star_icon} alt="star_icon" className="w-3 5" />
+              <img src={star_icon} alt="star_icon" className="w-3 5" />
+              <img src={star_icon} alt="star_icon" className="w-3 5" />
+              <img src={star_icon} alt="star_icon" className="w-3 5" />
             </div>
           </div>
         </div>
-      </>
-
-
-      <div className="related container py-3">
-        <h4>Related Products</h4>
-        <div className="relateditem">Products</div>
       </div>
-    </Wrapper>
+    </div>
+  ) : (
+    <div className="opacity-0"></div>
   );
 }
 
