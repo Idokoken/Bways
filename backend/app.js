@@ -41,5 +41,9 @@ app.use("/", indexRouter);
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/products", productRouter);
+app.use("/test", (req, res) => {
+  res.json({ msg: "testing bways api" });
+  console.log("testing bways api");
+});
 
 app.listen(port, () => console.log("listening on port " + chalk.magenta(8000)));

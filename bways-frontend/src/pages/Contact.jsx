@@ -2,110 +2,51 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { tablet } from "../Responsive";
-import Header from "../components/Header";
 import Footer from "../components/Footer";
-
+import Title from "../components/Title";
+import contact_img from "../assets/contact_img.jpg";
+import Newsletter from "./../components/Newsletter";
 
 const Wrapper = styled.div`
-      min-height: 50vh;
-      font-family: var(--primary-font);
-      background: var(--bg-color);
-
-      .tel {
-        display: flex;
-        align-items: center;
-      }
-      .contact {
-        height: 15vh;
-        background-image: url("/images/contact.jpg");
-        margin: 0;
-        padding: 20px;
-        ${tablet({ height: "20vh" })}
-      }
-      h4 {
-        color: rgba(30, 51, 187, 1);
-      }
-      .address {
-        margin: 20px;
-        font-weight: 500;
-        font-family: "Times New Roman", Times, serif;
-        font-size: 20px;
-      }
-      .address h2 {
-        color: rgba(30, 51, 187, 1);
-      }
-      .form {
-        background-image: url("/assets/form.jpg");
-        padding: 30px;
-        border-radius: 10px;
-        color: rgba(30, 51, 187, 1);
-      }
-      .form label {
-        font-size: 20px;
-        font-weight: 500;
-      }
-    `;
+  min-height: 50vh;
+  font-family: var(--primary-font);
+`;
 
 class Contact extends Component {
   render() {
-
     return (
       <>
-        <Header />
         <Wrapper>
-          <div className="contact">
-            <h4>
-              <Link style={{ textDecoration: "none", color: "inherit" }} to="/">
-                Home
-              </Link>{" "}
-              -- Contact
-            </h4>
+          <div className="text-center text-2xl border-t pt-10">
+            <Title text1={`CONTACT`} text2={`US`} />
           </div>
-          <div className="address">
-            <h2>Office Address</h2>
-            <p>No 14 Gida Steeet Lekki Phase One</p>
-            <p>Lagos, Nigeria</p>
-            <div className="tel">
-              <Link
-                to="tel:#"
-                style={{
-                  textDecoration: "none",
-                  color: "inherit",
-                  fontSize: "1rem",
-                }}
-              >
-                <p>Tel: +2349037779547</p>
-              </Link>
-            </div>
-            <p>Email: bwayng@yahoo.com</p>
-          </div>
-          <div className="container py-5">
-            <div className="form">
-              <h3 className="text-center mb-2">Send Us your Enquiry</h3>
-              <form method="post" action="/contact">
-                <div className="mb-3">
-                  <label className="form-label">Name</label>
-                  <input type="text" className="form-control" name="name" />
-                </div>
-                <div className="mb-3">
-                  <label className="form-label">Email address</label>
-                  <input type="email" className="form-control" name="email" />
-                </div>
-                <div className="mb-3">
-                  <label className="form-label">Description</label>
-                  <textarea
-                    className="form-control"
-                    name="description"
-                    cols="20"
-                    rows="5"
-                  ></textarea>
-                </div>
-                <button type="submit" className="btn btn-primary">
-                  Submit
-                </button>
-              </form>
+          <div className="my-10 flex flex-col justify-center md:flex-row gap-10 mb-28">
+            <img
+              className="w-full md:max-w-[480px]"
+              src={contact_img}
+              alt="contact profile"
+            />
+            <div className="flex flex-col justify-center items-start gap-6">
+              <p className="font-semibold text-xl text-gray-500">Our Store</p>
+              <p className="text-gray-500">
+                No 12 Amino Kano way, Wuse 2, Abuja Nigeria
+              </p>
+              <p className="text-gray-500">
+                Tel: +234704487099 <br />
+                Email: gbways@gmail.com
+              </p>
+              <p className="font-semibold text-xl text-gray-400">
+                Carrier at Bways
+              </p>
+              <p className="text-gray-500">
+                Learn more about our Teams and Job openings
+              </p>
+              <button className="border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-100">
+                Explore Jobs
+              </button>
             </div>
           </div>
+          <Newsletter />
         </Wrapper>
         <Footer />
       </>

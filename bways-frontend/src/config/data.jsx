@@ -13,6 +13,7 @@ export const Data = [
     brand: "Nike",
     countInSock: 14,
     numReviews: 10,
+    sizes: ["L", "M", "S"],
     image: "/images/items/project1.jpg",
   },
   {
@@ -29,6 +30,7 @@ export const Data = [
     brand: "Nike",
     countInSock: 0,
     numReviews: 12,
+    sizes: ["L", "M", "S"],
     image: "/images/items/project2.jpg",
   },
   {
@@ -45,6 +47,7 @@ export const Data = [
     brand: "Nike",
     countInSock: 20,
     numReviews: 15,
+    sizes: ["L", "M", "S"],
     image: "/images/items/project3.jpg",
   },
   {
@@ -61,6 +64,7 @@ export const Data = [
     brand: "Nike",
     countInSock: 18,
     numReviews: 5,
+    sizes: ["L", "M", "S"],
     image: "/images/items/project4.jpg",
   },
   {
@@ -77,6 +81,7 @@ export const Data = [
     brand: "Nike",
     countInSock: 14,
     numReviews: 28,
+    sizes: ["L", "M", "S"],
     image: "/images/items/project5.jpg",
   },
   {
@@ -93,6 +98,7 @@ export const Data = [
     brand: "Nike",
     countInSock: 0,
     numReviews: 30,
+    sizes: ["L", "M", "S"],
     image: "/images/items/project2.jpg",
   },
 ];

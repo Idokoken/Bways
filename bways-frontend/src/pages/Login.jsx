@@ -1,94 +1,98 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { tablet } from "../Responsive";
-import brand from "../assets/brand.png"
+import brand from "../assets/brand.png";
+import axios from "axios";
+import { api } from "./../config/api";
 
 const Wrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: "Poppins", sans-serif;
-  background-color: #000000;
-
-  .content {
-    background-image: url("/assets/wall.jpg");
-    min-height: 400px;
-    width: 70%;
-    padding: 20px;
-    margin: 30px;
-    border-radius: 20px;
-    color: white;
-    ${tablet({ width: "50%" })}
-  }
-  .head {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 30px;
-  }
-
-  img {
-    border: 2px solid black;
-    border-radius: 50%;
-  }
-  label,
-  h3 {
-    font-weight: 600;
-    color: white;
-  }
-  input {
-    border-radius: 20px;
-  }
-  button {
-    width: 100%;
-    border-radius: 20px;
-  }
+  // width: 100vw;
+  // height: 100vh;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // font-family: "Poppins", sans-serif;
+  // background-color: #000000;
 `;
 
-
 function Login() {
+  const [currentState, setCurrentState] = useState("Sign Up");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  };
+  // const [pro, setPro] = useState("");
+  // const getData = async () => {
+  //   let data = await axios.get(`${BASE_URL}/test`);
+  //   console.log(data.data);
+  // };
+  // useEffect(() => {
+  //   getData();
+  // }, [pro]);
+
   return (
     <Wrapper>
       <div className="content">
         <div className="head">
           <img src={brand} alt="brand" width="50" height="50" />
-          <h3 className="my-2">Login</h3>
+          <h3 className="my-2">
+            {currentState === "Login" ? "Login" : "Sign Up"}
+          </h3>
         </div>
-        <form>
-          <div className="form-group">
-            <label className="my-2">Email</label>
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-2xl"
+        >
+          <div className="inline-flex items-center gap-2 mt-10 mb-2">
+            <p className="prata-regular text-3xl ">{currentState}</p>
+            <hr className="border-none h-[1.5px] w-8 bg-gray-800" />
+          </div>
+          {currentState === "Login" ? (
+            ""
+          ) : (
             <input
               type="text"
-              className="form-control"
-              name="email"
-              placeholder="enter email"
+              className="w-full px-3 py-2 border border-gray-800"
+              placeholder="Name"
+              required
             />
-          </div>
-          <div className="form-group">
-            <label className="my-2">Password</label>
-            <input
-              type="password"
-              className="form-control"
-              name="password"
-              placeholder="enter password"
-            />
-          </div>
-          <div className="form-group">
-            <button className="btn btn-primary mt-5">Submit</button>
-          </div>
-        </form>
+          )}
 
-        <p className="my-3">
-          Not yet a member?{" "}
-          <Link to="/register" style={{ textDecoration: "none" }}>
-            <span style={{ fontStyle: "italic", color: "yellow" }}>
-              register
-            </span>
-          </Link>
-        </p>
+          <input
+            type="email"
+            className="w-full px-3 py-2 border border-gray-800"
+            placeholder="Email"
+            required
+          />
+          <input
+            type="password"
+            className="w-full px-3 py-2 border border-gray-800"
+            placeholder="Password"
+            required
+          />
+          <div className="w-full flex justify-between text-sm mt-[-8px]">
+            <p className="cursor-pointer">Forgot your Password ?</p>
+            {currentState === "Login" ? (
+              <p
+                className="cursor-pointer"
+                onClick={() => setCurrentState("Sign Up")}
+              >
+                Create Account
+              </p>
+            ) : (
+              <p
+                className="cursor-pointer"
+                onClick={() => setCurrentState("Login")}
+              >
+                Login Here
+              </p>
+            )}
+          </div>
+          <button className="bg-black text-white font-light px-8 py-2 mt-2">
+            {currentState === "Login" ? "Login" : "Sign Up"}
+          </button>
+        </form>
       </div>
     </Wrapper>
   );

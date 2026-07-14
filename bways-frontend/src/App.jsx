@@ -17,12 +17,17 @@ import Orders from "./pages/Order";
 import Collection from "./components/Collection";
 import PlaceOrder from "./components/PlaceOrder";
 import SearchBar from "./components/SearchBar";
+import Header from "./components/Header";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // import ScrollToTop from './ScrollToTop';
 
 function App() {
   return (
-    <>
+    <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
+      <ToastContainer />
+      <Header />
       <SearchBar />
       {/* <ScrollToTop /> */}
       <Routes>
@@ -39,12 +44,12 @@ function App() {
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/product/:productId" element={<SingleProduct />} />
 
-        <Route path="/signin" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
         <Route path="*" element={<ErrorPage />} />
       </Routes>
-    </>
+    </div>
   );
 }
 

@@ -5,6 +5,7 @@ import Rating from "./Rating";
 import { tablet } from "../Responsive";
 import { ShopContext } from "../context/ShopContext";
 import star_icon from "../assets/star_icon.png";
+import RelatedProducts from "../pages/RelatedProducts";
 
 const Wrapper = styled.div`
   min-height: 50vh;
@@ -83,9 +84,10 @@ const Wrapper = styled.div`
 
 function Product(props) {
   const { productId } = useParams();
-  const { products } = useContext(ShopContext);
+  const { products, currency, addToCart } = useContext(ShopContext);
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState("");
+  const [size, setSize] = useState("");
 
   const product = products.find((a, i) => a._id === productId);
 
@@ -98,7 +100,7 @@ function Product(props) {
       if (item._id === productId) {
         setProductData(item);
         setImage(item.image[0]);
-        console.log(item);
+        // console.log(item);
         return null;
       }
     });
@@ -201,7 +203,7 @@ function Product(props) {
           {/* Product Info */}
           <div className="flex-1">
             <h1 className="font-medium text-2xl mt-2">{productData.name}</h1>
-            <div className="flex items-center gap-1 mt-2">
+            <div className="flex  items-center gap-1 mt-2">
               <img src={star_icon} alt="star_icon" className="w-3 5" />
               <img src={star_icon} alt="star_icon" className="w-3 5" />
               <img src={star_icon} alt="star_icon" className="w-3 5" />
@@ -209,9 +211,69 @@ function Product(props) {
               <img src={star_icon} alt="star_icon" className="w-3 5" />
               <img src={star_icon} alt="star_icon" className="w-3 5" />
             </div>
+            <p className="pl-2">(122)</p>
+            <p className="mt-5 text-3xl font-medium">
+              {currency}
+              {productData.price}
+            </p>
+            <p className="mt-5 text-gray-500 md:w-4/5">
+              {productData.description}
+            </p>
+            <div className="flex flex-col gap-4 my-8">
+              <p>Select Size</p>
+              <div className="flex gap-2">
+                {productData.sizes.map((item, index) => {
+                  <button
+                    onClick={() => setSize(item)}
+                    className={`border py-2 px-4 bg-gray-100 ${item === size ? "border-orange-500" : ""}`}
+                    key={item}
+                  >
+                    {size}
+                  </button>;
+                })}
+              </div>
+            </div>
+            <button
+              onClick={() => addToCart(productData._id, size)}
+              className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700"
+            >
+              ADD TO CART
+            </button>
+            <hr className="sm:w-4/5 mt-8" />
+            <div className="text-sm text-gray-500 mt-5 flex flex-col gap-1">
+              <p>100% Original Product</p>
+              <p>Cash on delivery is available on this Product</p>
+              <p>Easy return and exchange policy within 7 days </p>
+            </div>
           </div>
         </div>
       </div>
+      {/*-------- description and review section --------*/}
+      <div className="mt-20">
+        <div className="flex">
+          <b className="">Description</b>
+          <p className="border px-5 py-3 text-sm">Reviews (122)</p>
+        </div>
+        <div className="flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500">
+          <p>
+            An Ecommerce website that facilitate the buying and selling of
+            products Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Voluptatibus ex, id aliquam eveniet, quod dolorem dolores corporis
+          </p>
+          <p>
+            E-commerce website typically displays products or services along
+            with detailed Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Quod eum laboriosam hic? Nihil est quisquam repellendus
+            dignissimos, nulla possimus earum animi quidem doloremque corrupti
+            voluptatum exercitationem quaerat deleniti sequi minima!
+          </p>
+        </div>
+      </div>
+      {/* -------- Display Related Products ------- */}
+      <RelatedProducts
+        category={productData.category}
+        subCategory={productData.subCategory}
+      />
     </div>
   ) : (
     <div className="opacity-0"></div>

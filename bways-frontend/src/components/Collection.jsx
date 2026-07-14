@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import Header from "./Header";
 import Footer from "./Footer";
 import styled from "styled-components";
 import { ShopContext } from "../context/ShopContext";
@@ -81,7 +80,6 @@ function Collection() {
 
   return (
     <>
-      <Header />
       <Wrapper>
         <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
           {/* filter option */}
