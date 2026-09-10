@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { tablet } from "../Responsive";
 import brand from "../assets/brand.png";
 import axios from "axios";
-import { api } from "./../config/api";
+import { api, BASE_URL } from "./../config/api";
+import { ShopContext } from "../context/ShopContext";
 
 const Wrapper = styled.div`
   // width: 100vw;
@@ -19,8 +20,30 @@ const Wrapper = styled.div`
 function Login() {
   const [currentState, setCurrentState] = useState("Sign Up");
 
+  const { token, setToken, navigate } = useContext(ShopContext);
+
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      if (currentState === "Sing Up") {
+        const resp = axios.post("${BASE_URL}/auth/register", {
+          username,
+          email,
+          password,
+        });
+      } else {
+        const resp = axios.post("${BASE_URL}/auth/login", {
+          email,
+          password,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   // const [pro, setPro] = useState("");
   // const getData = async () => {
@@ -34,12 +57,12 @@ function Login() {
   return (
     <Wrapper>
       <div className="content">
-        <div className="head">
+        {/* <div className="head">
           <img src={brand} alt="brand" width="50" height="50" />
           <h3 className="my-2">
             {currentState === "Login" ? "Login" : "Sign Up"}
           </h3>
-        </div>
+        </div> */}
         <form
           onSubmit={handleSubmit}
           className="flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-2xl"
@@ -54,8 +77,10 @@ function Login() {
             <input
               type="text"
               className="w-full px-3 py-2 border border-gray-800"
-              placeholder="Name"
+              placeholder="Username"
               required
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           )}
 
@@ -64,12 +89,16 @@ function Login() {
             className="w-full px-3 py-2 border border-gray-800"
             placeholder="Email"
             required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
             className="w-full px-3 py-2 border border-gray-800"
             placeholder="Password"
             required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <div className="w-full flex justify-between text-sm mt-[-8px]">
             <p className="cursor-pointer">Forgot your Password ?</p>

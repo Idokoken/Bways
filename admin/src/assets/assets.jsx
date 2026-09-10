@@ -1,5 +1,9 @@
-import brand from "./brand.png"
+import brand from "./brand.png";
+import add_icon from "./add_icon.png";
+import order_icon from "./order_icon.png";
 
 export const assets = {
-    brand
-}
+  brand,
+  add_icon,
+  order_icon,
+};

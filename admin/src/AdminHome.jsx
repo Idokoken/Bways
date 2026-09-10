@@ -4,7 +4,6 @@ import Navbar from './components/Navbar'
 function AdminHome() {
     return (
         <div>
-            <Navbar />
             <main>
                 Home
             </main>

@@ -18,8 +18,9 @@ exports.createProduct = async (req, res) => {
   } = req.body;
 
   try {
-    if (!name || !description || !category || !price || !brand) {
-      res
+    if (!name || !description || !category || !price) {
+      console.log("fill all required fields");
+      return res
         .status(400)
         .json({ success: false, message: "fill all required fields" });
     }
@@ -68,7 +69,7 @@ exports.createProduct = async (req, res) => {
     //     bestseller)
     console.log(imageUrl);
   } catch (error) {
-    res
+    return res
       .status(500)
       .json({ success: false, message: error.message, data: null });
   }
@@ -86,7 +87,12 @@ exports.getOneProduct = async (req, res) => {
 exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.find();
-    res.status(200).json(products);
+    // res.status(200).json(products);
+    res.status(200).json({
+      success: true,
+      message: "products successfully fetched",
+      products,
+    });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
