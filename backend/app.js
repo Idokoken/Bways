@@ -7,6 +7,8 @@ const indexRouter = require("./routes/indexRouter");
 const authRouter = require("./routes/authRouter");
 const userRouter = require("./routes/userRouter");
 const productRouter = require("./routes/productRouter");
+const cartRouter = require("./routes/cartRouter");
+const orderRouter = require("./routes/orderRouter");
 const connectCloudinary = require("./middleware/uploadsCloudinary");
 
 require("dotenv").config();
@@ -41,6 +43,8 @@ app.use("/", indexRouter);
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/products", productRouter);
+app.use("/cart", cartRouter);
+app.use("/order", orderRouter);
 app.use("/test", (req, res) => {
   res.json({ msg: "testing bways api" });
   console.log("testing bways api");

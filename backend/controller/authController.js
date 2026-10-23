@@ -16,15 +16,17 @@ exports.registerUser = async (req, res) => {
   try {
     const check = await User.findOne({ email });
     if (check) {
-      res.status(400).json({ success: false, message: "email already in use" });
+      return res
+        .status(400)
+        .json({ success: false, message: "email already in use" });
     }
     if (!validator.isEmail(email)) {
-      res.status(400).json({ success: false, msg: "invalid Email" });
+      return res.status(400).json({ success: false, massage: "invalid Email" });
     }
     if (password.length < 8) {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
-        msg: "password must be at least 8 Characters",
+        message: "password must be at least 8 Characters",
       });
     }
     {
@@ -46,11 +48,13 @@ exports.registerUser = async (req, res) => {
         { expiresIn: process.env.JWT_EXPIRES_IN },
       );
       // res.status(200).json({ success: true, msg: newUser });
-      res.status(200).json({ success: true, token });
+      return res
+        .status(200)
+        .json({ success: true, token, message: "registration successful" });
     }
   } catch (error) {
     console.log(error);
-    res.status(500).json({ success: false, massage: error.message });
+    return res.status(500).json({ success: false, massage: error.message });
   }
 };
 
@@ -59,12 +63,16 @@ exports.loginUser = async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      res.status(400).json({ success: false, msg: "invalid cridentials" });
+      return res
+        .status(400)
+        .json({ success: false, message: "invalid cridentials" });
     }
 
     const userPassword = await bcrypt.compare(password, user.password);
     if (!userPassword) {
-      res.status(400).json({ success: false, msg: "invalid cridentials" });
+      return res
+        .status(400)
+        .json({ success: false, message: "invalid cridentials" });
     }
     const token = await jwt.sign(
       { id: user._id, email: user.email },
@@ -77,10 +85,12 @@ exports.loginUser = async (req, res) => {
     // res.cookie("token", token).json(user);
     //res.send("cookie sent");
     // res.status(200).json({ success: true, user, token });
-    res.status(200).json({ success: true, token });
+    return res
+      .status(200)
+      .json({ success: true, token, message: "login successful" });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ msg: error.message });
+    return res.status(500).json({ massage: error.message });
   }
 };
 
@@ -99,7 +109,6 @@ exports.adminLogin = async (req, res) => {
     } else {
       res.status(400).json({ success: false, message: "Invalid Cridentials" });
     }
-    
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: error.message });

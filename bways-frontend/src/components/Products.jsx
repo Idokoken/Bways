@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { tablet } from "../Responsive";
 import { Data } from "../config/data";
+import { useContext } from "react";
+import { ShopContext } from "../context/ShopContext";
 
 const Wrapper = styled.div`
   margin: 0;
@@ -91,9 +93,12 @@ const Wrapper = styled.div`
 `;
 
 function Products() {
+  const { products } = useContext(ShopContext);
+  console.log(products);
+
   const items =
-    Data &&
-    Data.map((item, i) => {
+    products &&
+    products.map((item, i) => {
       return (
         <div className="card" key={item._id}>
           <NavLink

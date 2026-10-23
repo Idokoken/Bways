@@ -6,6 +6,7 @@ import brand from "../assets/brand.png";
 import axios from "axios";
 import { api, BASE_URL } from "./../config/api";
 import { ShopContext } from "../context/ShopContext";
+import { toast } from "react-toastify";
 
 const Wrapper = styled.div`
   // width: 100vw;
@@ -18,7 +19,7 @@ const Wrapper = styled.div`
 `;
 
 function Login() {
-  const [currentState, setCurrentState] = useState("Sign Up");
+  const [currentState, setCurrentState] = useState("Login");
 
   const { token, setToken, navigate } = useContext(ShopContext);
 
@@ -29,30 +30,46 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (currentState === "Sing Up") {
-        const resp = axios.post("${BASE_URL}/auth/register", {
+      if (currentState === "Sign Up") {
+        const { data } = await axios.post(`${BASE_URL}/auth/register`, {
           username,
           email,
           password,
         });
+        if (data.success) {
+          setToken(data.token);
+          localStorage.setItem("token", data.token);
+          console.log(data.message);
+        } else {
+          toast.error(data.message);
+          console.log(data.message);
+        }
       } else {
-        const resp = axios.post("${BASE_URL}/auth/login", {
+        const { data } = await axios.post(`${BASE_URL}/auth/login`, {
           email,
           password,
         });
+        console.log(data);
+        if (data.success) {
+          setToken(data.token);
+          localStorage.setItem("token", data.token);
+          toast.success(data.message);
+        } else {
+          toast.error(data.message);
+        }
       }
     } catch (error) {
+      toast.error(error.response.data.message);
+      console.log(error.response.data.message);
       console.log(error);
     }
   };
-  // const [pro, setPro] = useState("");
-  // const getData = async () => {
-  //   let data = await axios.get(`${BASE_URL}/test`);
-  //   console.log(data.data);
-  // };
-  // useEffect(() => {
-  //   getData();
-  // }, [pro]);
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [token]);
 
   return (
     <Wrapper>

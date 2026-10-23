@@ -7,6 +7,7 @@ import { ShopContext } from "../context/ShopContext";
 import Title from "../components/Title";
 import bin_icon from "../assets/bin_icon.png";
 import CartTotal from "../components/CartTotal";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
   margin: 0;
@@ -81,21 +82,23 @@ function Cart(props) {
   const [cartData, setCartData] = useState([]);
 
   useEffect(() => {
-    const tempData = [];
-    for (const items in cartItems) {
-      for (const item in cartItems[items]) {
-        if (cartItems[items][item] > 0) {
-          tempData.push({
-            _id: items,
-            size: item,
-            quantity: cartItems[items][item],
-          });
+    if (products.length > 0) {
+      const tempData = [];
+      for (const items in cartItems) {
+        for (const item in cartItems[items]) {
+          if (cartItems[items][item] > 0) {
+            tempData.push({
+              _id: items,
+              size: item,
+              quantity: cartItems[items][item],
+            });
+          }
         }
       }
+      setCartData(tempData);
+      // console.log(tempData);
     }
-    setCartData(tempData);
-    // console.log(tempData);
-  }, [cartItems]);
+  }, [cartItems, products]);
 
   return (
     <>
@@ -197,10 +200,13 @@ function Cart(props) {
         <div className="flex flex-end my-20">
           <div className="w-full sm:w-[450px]">
             <CartTotal />
-            <div className="w-full text-end">
-              <button className="bg-black text-white text-sm my-8 px-6 py-3">
+            <div className="w-full text-end mt-8">
+              <Link
+                to="/place-order"
+                className="bg-black text-white text-sm my-8 px-6 py-3 "
+              >
                 PROCCED TO CHECKOUT
-              </button>
+              </Link>
             </div>
           </div>
         </div>

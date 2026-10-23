@@ -19,7 +19,7 @@ function Home() {
       <Wrapper>
         <Hero />
         <LatestCollection />
-        {/* <Products /> */}
+        <Products />
         <BestSeller />
         <OurPolicy />
         <Newsletter />
