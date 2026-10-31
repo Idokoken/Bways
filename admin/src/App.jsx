@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import Navbar from "./components/Navbar";
 import ErrorPage from "./pages/ErrorPage";
-import Orders from "./pages/Orders";
+import OrdersPage from "./pages/OrdersPage";
 import ListProduct from "./pages/ListProduct";
 import AddProduct from "./pages/AddProduct";
 import ScrollToTop from "./ScrollToTop";
@@ -36,7 +36,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<AdminHome />} />
                 <Route path="/signin" element={<LoginPage />} />
-                <Route path="/orders" element={<Orders token={token} />} />
+                <Route path="/orders" element={<OrdersPage token={token} />} />
                 <Route path="/add" element={<AddProduct token={token} />} />
                 <Route path="/list" element={<ListProduct token={token} />} />
                 <Route path="*" element={<ErrorPage />} />

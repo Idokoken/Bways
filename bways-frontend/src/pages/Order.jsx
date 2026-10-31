@@ -1,10 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { tablet } from "../Responsive";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { ShopContext } from "../context/ShopContext";
 import Title from "../components/Title";
+import axios from "axios";
+import { BASE_URL } from "../config/api";
+import { toast } from "react-toastify";
 
 const Wrapper = styled.div`
   margin: 0;
@@ -13,7 +16,45 @@ const Wrapper = styled.div`
 `;
 
 function Order() {
-  const { currency, delivery_fee, products } = useContext(ShopContext);
+  const { currency, delivery_fee, token } = useContext(ShopContext);
+
+  const [orderData, setOrderdata] = useState([]);
+
+  const loadOrderData = async () => {
+    try {
+      if (!token) {
+        return null;
+      }
+      const { data } = await axios.post(
+        `${BASE_URL}/orders/userorders`,
+        {},
+        { headers: { token } },
+      );
+      if (data.success) {
+        let allOrderItems = [];
+        data.orders.map((order) => {
+          order.items.map((item) => {
+            item["status"] = order.status;
+            item["payment"] = order.payment;
+            item["paymentMethod"] = order.paymentMethod;
+            item["date"] = order.date;
+            allOrderItems.push(item);
+          });
+        });
+        setOrderdata(allOrderItems.reverse());
+      }
+
+      // console.log(data);
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    loadOrderData();
+  }, [token]);
+
   return (
     <>
       <Wrapper>
@@ -22,7 +63,7 @@ function Order() {
             <Title text1={`MY`} text2={`ORDERS`} />
           </div>
           <div className="">
-            {products.slice(1, 4).map((item, index) => (
+            {orderData.map((item, index) => (
               <div
                 key={index}
                 className="py-4 border-t border-b text-gray-700 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
@@ -36,20 +77,23 @@ function Order() {
                         {currency}
                         {item.price}
                       </p>
-                      <p>Quantity: 1</p>
-                      <p>Size: M</p>
+                      <p>Quantity: {item.quantity}</p>
+                      <p>Size: {item.size}</p>
                     </div>
                     <p className="mt-2">
-                      Date: <span className="text-gray-400">12 July 2026</span>
+                      Date: <span className="text-gray-400">{new Date(item.date).toDateString()}</span>
+                    </p>
+                     <p className="mt-2">
+                      Payment: <span className="text-gray-400">{item.paymentMethod}</span>
                     </p>
                   </div>
                 </div>
                 <div className="md:w-1/2 flex justify-between">
                   <div className="flex items-center gap-2">
                     <p className="min-w-2 h-2 rounded-full bg-green-500"></p>
-                    <p className="text-sm md:text-base">Ready To Ship</p>
+                    <p className="text-sm md:text-base">{item.status}</p>
                   </div>
-                  <button className="border px-4 py-2 text-sm font-medium rounded-sm">
+              <button onClick={loadOrderData} className="border px-4 py-2 text-sm font-medium rounded-sm">
                     Track Order
                   </button>
                 </div>

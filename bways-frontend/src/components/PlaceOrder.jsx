@@ -5,6 +5,8 @@ import stripe_logo from "../assets/stripe_logo.png";
 import razorpay_logo from "../assets/razorpay_logo.png";
 import { ShopContext } from "../context/ShopContext";
 import { BASE_URL } from "../config/api";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 function PlaceOrder() {
   const [method, setMethod] = useState("cod");
@@ -17,6 +19,7 @@ function PlaceOrder() {
     products,
     currency,
     delivery_fee,
+    getCartAmount,
   } = useContext(ShopContext);
   const [formData, setFormdata] = useState({
     firstName: "",
@@ -34,7 +37,25 @@ function PlaceOrder() {
     const { name, value } = e.target;
     setFormdata((data) => ({ ...data, [name]: value }));
   };
-  const onSubmitHandler = (e) => {
+
+  const iniPay = (order) => {
+    const option = {
+      key: import.meta.env.VITE_RAZORPAY_API_KEY,
+      amount: order.amount,
+      currency: order.currency,
+      name: "Order Payment",
+      description: "Order Payment",
+      order_id: order.id,
+      receipt: order.receipt,
+      handler: async (response) => {
+        console.log(response);
+      },
+    };
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  };
+
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
       let orderItems = [];
@@ -51,9 +72,60 @@ function PlaceOrder() {
             }
           }
       }
-      console.log(orderItems);
+
+      let orderData = {
+        address: formdata,
+        items: orderItems,
+        amount: getCartAmount() + delivery_fee,
+      };
+
+      switch (method) {
+        // API CALL FOR COD
+        case "cod":
+          const { data } = await axios.post(
+            `${BASE_URL}/order/place`,
+            orderData,
+            {
+              headers: { token },
+            },
+          );
+          if (data.success) {
+            setCartItems({});
+            navigate("/orders");
+          } else {
+            toast.error(data.message);
+          }
+          break;
+
+        case "stripe":
+          const stripeResponse = await axios.post(
+            `${BASE_URL}/order/stripe`,
+            orderData,
+            {
+              headers: { token },
+            },
+          );
+          if (stripeResponse.data.success) {
+            const { session_url } = stripeResponse.data;
+            window.location.replace(session_url);
+            setCartItems({});
+            navigate("/orders");
+          } else {
+            toast.error(stripeResponse.data.message);
+          }
+          break;
+
+        case "razorpoay":
+          break;
+
+        default:
+          break;
+      }
+
+      // console.log(orderItems);
     } catch (error) {
       console.log(error);
+      toast.error(error.message);
     }
   };
 

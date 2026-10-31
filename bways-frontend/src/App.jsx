@@ -14,6 +14,7 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import ProductsPage from "./pages/ProductsPage";
 import SingleProduct from "./pages/SingleProduct";
 import Orders from "./pages/Order";
+import Verify from "./pages/Verify";
 import Collection from "./components/Collection";
 import PlaceOrder from "./components/PlaceOrder";
 import SearchBar from "./components/SearchBar";
@@ -40,6 +41,7 @@ function App() {
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/orders" element={<Orders />} />
+        <Route path="/verify" element={<Verify />} />
         <Route path="/place-order" element={<PlaceOrder />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/product/:productId" element={<SingleProduct />} />
