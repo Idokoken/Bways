@@ -3,6 +3,7 @@ const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const validator = require("validator");
+const { sendWelcomeEmail } = require("../services/emailService");
 
 require("dotenv").config();
 
@@ -47,6 +48,12 @@ exports.registerUser = async (req, res) => {
         process.env.JWT_SECRET,
         { expiresIn: process.env.JWT_EXPIRES_IN },
       );
+
+      // Send welcome email without blocking registration
+      sendWelcomeEmail(user).catch((error) => {
+        console.error("Welcome email error:", error.message);
+      });
+
       // res.status(200).json({ success: true, msg: newUser });
       return res
         .status(200)

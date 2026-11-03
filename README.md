@@ -11,14 +11,16 @@ This website enables people to purchase and order products. It was built using b
 ## Technology used
 
 The following technologies were used in building the frontend
+
 1. HTML
 2. CSS
-3. Bootstrap Framwork
+3. Tailwind Framwork
 4. Javascript
 5. React
 6. Styled Components
 
 The following technologies were used in building the backend
+
 1. Nodejs
 2. Express
 3. MongoDB

@@ -7,6 +7,8 @@ import LatestCollection from "../components/LatestCollection";
 import BestSeller from "../components/BestSeller";
 import OurPolicy from "../components/OurPolicy";
 import Newsletter from "../components/Newsletter";
+import LatestArrival from "./../components/LatestArrival";
+import MajorCategory from "./../components/MajorCategory";
 
 const Wrapper = styled.div`
   // min-height: 60vh;
@@ -18,9 +20,11 @@ function Home() {
     <>
       <Wrapper>
         <Hero />
+        <LatestArrival />
         <LatestCollection />
         <Products />
         <BestSeller />
+        <MajorCategory />
         <OurPolicy />
         <Newsletter />
       </Wrapper>

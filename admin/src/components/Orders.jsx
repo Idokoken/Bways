@@ -19,7 +19,7 @@ function Orders({ token }) {
         { headers: { token } },
       );
       if (data.success) {
-        setOrders(data.orders);
+        setOrders(data.orders.reverse());
       } else {
         toast.error(data.message);
       }
