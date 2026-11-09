@@ -9,6 +9,7 @@ import OurPolicy from "../components/OurPolicy";
 import Newsletter from "../components/Newsletter";
 import LatestArrival from "./../components/LatestArrival";
 import MajorCategory from "./../components/MajorCategory";
+import Header from "../components/Header";
 
 const Wrapper = styled.div`
   // min-height: 60vh;
@@ -18,6 +19,7 @@ const Wrapper = styled.div`
 function Home() {
   return (
     <>
+      <Header />
       <Wrapper>
         <Hero />
         <LatestArrival />

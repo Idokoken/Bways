@@ -1,6 +1,4 @@
 import { useState } from "react";
-// import heroImg from './assets/hero.png'
-
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
@@ -21,20 +19,23 @@ import SearchBar from "./components/SearchBar";
 import Header from "./components/Header";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Faq from "./pages/Faq";
 
-// import ScrollToTop from './ScrollToTop';
+import ScrollToTop from "./ScrollToTop";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
+    <div>
       <ToastContainer />
-      <Header />
+      {/* <Header /> */}
       <SearchBar />
-      {/* <ScrollToTop /> */}
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact-us" element={<Contact />} />
         <Route path="/about-us" element={<About />} />
+        <Route path="/faq" element={<Faq />} />
 
         <Route path="/collection" element={<Collection />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
@@ -51,6 +52,7 @@ function App() {
 
         <Route path="*" element={<ErrorPage />} />
       </Routes>
+      {/* <Footer /> */}
     </div>
   );
 }

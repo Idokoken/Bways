@@ -11,47 +11,57 @@ const Wrapper = styled.div`
   color: white;
 
   h4 {
-    margin-bottom: 20px;
-    font-family: "Times New Roman", Times, serif;
-    /* margin-top: 5px; */
   }
   div {
-    display: flex;
   }
   input {
-    padding: 5px;
-    border: none;
-    border-radius: 20px 0 0 20px;
+    border-radius: 30px 0 0 30px;
+    border: 2px solid var(--primary-color);
+    color: black;
   }
   button {
-    padding: 5px;
-    background: teal;
-    color: white;
-    border: none;
-    border-radius: 0 20px 20px 0;
+    background: var(--primary-color);
+    border-radius: 0 30px 30px 0;
   }
 `;
 
 function Newsletter() {
   const handleSubmit = (event) => {
-    event.preventDefault()
-  }
+    event.preventDefault();
+  };
 
   return (
     <>
-      <div className="text-center my-3">
-        <p className="text-2xl font-medium text-gray-800 ">Subscribe Now and Get 20% OFF </p>
-        <p className="text-gray-400 mt-3 "> Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Eum, itaque.
-        </p>
-        <form onSubmit={handleSubmit} className="w-full sm:w-1/2 flex items-center gap-3 mx-auto my-6 border pl-3">
-          <input className="w-full sm:flex-1 outline-none" type="email" name="email" id="email"
-            placeholder="Enter Your Email" required />
-          <button type="submit" className="bg-black text-white text-xs px-10 py-4">SUBSCRIBE</button>
-        </form>
-      </div>
+      <Wrapper>
+        <div className="text-center my-3">
+          <p className="text-2xl font-medium text-gray-800 ">
+            Subscribe Now to Recieve Update on Our Latest Promotion
+          </p>
+          <p className="text-gray-400 mt-3 ">
+            {" "}
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum,
+            itaque.
+          </p>
+          <form
+            onSubmit={handleSubmit}
+            className="w-full sm:w-1/2 flex items-center gap-0 mx-auto my-6 pl-3"
+          >
+            <input
+              className="w-full sm:flex-1 outline-none py-2.5 px-2"
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Enter Your Email"
+              required
+            />
+            <button type="submit" className=" text-white text-xs px-10 py-4">
+              SUBSCRIBE
+            </button>
+          </form>
+        </div>
+      </Wrapper>
     </>
-  )
+  );
 }
 
 export default Newsletter;

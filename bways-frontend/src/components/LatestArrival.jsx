@@ -1,19 +1,49 @@
 import React from "react";
 import styled from "styled-components";
-import hero from "../assets/hero.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {Link} from 'react-router-dom'
+import { Link, useNavigate } from "react-router-dom";
+import hero from "../assets/hero.png";
+import item1 from "../assets/item1.png";
+import item2 from "../assets/item2.png";
+import item3 from "../assets/item3.png";
 
 import SliderModule from "react-slick";
+import { tablet } from "../Responsive";
 const Slider = SliderModule.default || SliderModule;
 
 const Wrapper = styled.div`
   // min-height: 60vh;
   font-family: var(--primary-font);
+
+  .main {
+  }
+
+  .left-side {
+  }
+
+  .img-container {
+    width: 100%;
+    height: 40vh;
+    background: rgba(215, 213, 251, 0.5);
+    border-radius: 40px;
+    ${tablet({ height: "60vh" })}
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  h1 {
+    font-size: 40px;
+    color: var(--primary-color);
+    ${tablet({ fontSize: "60px" })}
+  }
 `;
 
 function LatestArrival() {
+  const navigate = useNavigate();
   var settings = {
     dots: true,
     infinite: true,
@@ -24,52 +54,55 @@ function LatestArrival() {
     autoplaySpeed: 2000,
   };
 
-const slides = [
+  const slides = [
     {
       id: 1,
-      image: hero,
+      image: item1,
     },
     {
       id: 2,
-      image: hero,      
+      image: item2,
     },
     {
       id: 3,
-      image: hero,   
+      image: item3,
     },
   ];
-
 
   return (
     <>
       <Wrapper>
-        <div className="flex flex-col sm:flex-row border border-gray-400">
+        <div className="flex flex-col sm:flex-row border border-gray-400 my-4 p-10 lg:px-20 main">
           {/* Hero Left Side */}
-          <div className="w-full sm:w-1/2 flex items-center justify-center py-10 sm:py-0">
+          <div className="w-full sm:w-1/2 flex items-center justify-center py-5 sm:py-0">
             <div className="text-[#414141]">
               <div className="flex items-center gap-2">
                 <p className="w-8 md:w-11 h-[2px] bg-[#414141]"></p>
-                <p className="font-medium text-sm md:text-base">
-                  OUR BESTSELLERS
-                </p>
+                <p className="font-bold text-lg">OUR BESTSELLERS</p>
               </div>
-              <h1 className=".prata-regular text-3xl sm:py-3 lg:text-5xl leading-relaxed">
-                latest Arrival
+              <h1 className=".prata-regular sm:py-3 leading-relaxed">
+                Latest Arrival
               </h1>
               <div className="flex items-center gap-2">
-                <p className="font-semibold text-sm md:text-base">SHOP NOW</p>
-                <p className="w-8 md:w-11 h-[1px] bg-[#414141]"></p>
+                <p
+                  onClick={() => navigate("/faq")}
+                  className="font-bold text-lg cursor-pointer"
+                >
+                  SHOP NOW
+                </p>
+                <p className="w-8 md:w-11 h-[2px] bg-[#414141]"></p>
               </div>
             </div>
           </div>
-          <Slider {...settings}>
-          {slides.map((slide) => (
-            <div key={slide.id}>
-          <img className="w-full sm:w-1/2" src={slide.image} alt="hero" />
-
+          <div className="w-full sm:w-1/2 left-side ">
+            <Slider {...settings}>
+              {slides.map((slide) => (
+                <div key={slide.id} className="img-container">
+                  <img className="" src={slide.image} alt="hero" />
+                </div>
+              ))}
+            </Slider>
           </div>
-          ))}
-        </Slider>
         </div>
       </Wrapper>
     </>

@@ -13,21 +13,22 @@ const Wrapper = styled.div`
 
   .row {
     display: grid;
-    grid-template-columns: 50% 50%;
-    gap: 5px;
+    grid-template-columns: 45% 45%;
+    justify-content: center;
+    gap: 20px;
     padding: 1rem;
     margin: 30px;
-    ${tablet({ gridTemplateColumns: "25% 25% 25% 25%" })}
+    ${tablet({ gridTemplateColumns: "23% 23% 23% 23%" })}
   }
 
   .item {
     justify-content: center;
   }
   .card {
-    border: 0.1rem #c0c0c0 solid;
     background-color: #f8f8f8;
     border-radius: 0.5rem;
     padding: 0;
+    box-shadow: -5px -5px 10px 5px rgba(236, 236, 243, 0.5), 5px 5px 5px 5px rgba(236, 236, 243, 0.5);
   }
  
   .image-container {
@@ -45,18 +46,21 @@ const Wrapper = styled.div`
     margin: 0;
     padding: 0 10px;
   }
-  }
+  
   h3 {
     font-size: 1.2rem;
     padding-top: 8px;
     padding-bottom: 8px;
     margin-bottom: 0;
     font-size: 16px;
+    color: black;
     ${tablet({ fontSize: "20px" })}
   }
   h4 {
     font-size: 1rem;
     padding: 0.5rem 0;
+    font-weight: 600;
+    
   }
   .price {
     display: flex;
@@ -69,14 +73,19 @@ const Wrapper = styled.div`
   .price h4 {
     margin: 0;
     font-size: 12px;
+    margin-left: 5px;
     ${tablet({ fontSize: "14px" })}
   }
   .add {
-    background-color: rgba(000, 000, 000, 0.8) !important;
+    background-color: var(--primary-color);
     color: white;
     padding: 4px 10px;
     font-size: 12px;
+    border-radius: 5px;
     ${tablet({ fontSize: "16px" })}
+  }
+  .rating{
+    margin-left: 10px;
   }
   .rating span {
     color: #f0c040;
@@ -97,8 +106,8 @@ function Products() {
   console.log(products);
 
   const items =
-    products &&
-    products.map((item, i) => {
+    // products &&
+    Data.map((item, i) => {
       return (
         <div className="card" key={item._id}>
           <NavLink
@@ -112,9 +121,9 @@ function Products() {
               <h3>{item.name}</h3>
             </div>
           </NavLink>
-          <Rating rating={item.rating} numReviews={item.numReviews} />
+          <div className='rating'><Rating rating={item.rating} numReviews={item.numReviews} /></div>
           <div className="price my-2">
-            <h4>${item.price}</h4>
+            <h4 className=''>${item.price}</h4>
             <div className="add btn">Add to Cart</div>
           </div>
         </div>

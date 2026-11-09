@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { tablet } from "../Responsive";
-import brand from '../assets/brand.png'
+import brand from "../assets/brand.png";
 
 const Wrapper = styled.footer`
   background-color: black;
@@ -25,16 +25,16 @@ const Wrapper = styled.footer`
     color: rgba(30, 51, 187, 1);
     margin-bottom: 15px;
   }
-  .footer .item a{
+  .footer .item a {
     display: block;
     text-decoration: none;
     color: inherit;
     margin-bottom: 10px;
-    font-size: 18px;  
+    font-size: 18px;
   }
-  .footer .item a:hover{
-     font-weight: 700;
-     color: rgba(30, 51, 187, 0.6);
+  .footer .item a:hover {
+    font-weight: 700;
+    color: rgba(30, 51, 187, 0.6);
   }
   .rule {
     border: 4px solid white;
@@ -43,21 +43,21 @@ const Wrapper = styled.footer`
     text-align: center;
     padding-bottom: 20px;
   }
-  .brand-img{
-       width: 30px;
-       height: 30px;
+  .brand-img {
+    width: 30px;
+    height: 30px;
   }
-  
+
   .brand {
     align-self: flex-start;
   }
   .icon-header {
     display: flex;
   }
-  .icons-container{
+  .icons-container {
     display: flex;
   }
-  .icons-container span{
+  .icons-container span {
     border: 2px solid white;
     display: flex;
     width: 40px;
@@ -69,19 +69,18 @@ const Wrapper = styled.footer`
     border-radius: 10px;
   }
   .icon {
-
   }
-  .mobile{
-     display: flex;
+  .mobile {
+    display: flex;
   }
-  .mobile a{
-     height: 30px;
-     width: 90px; 
+  .mobile a {
+    height: 30px;
+    width: 90px;
   }
   .mobile-img {
     border-radius: 5px;
     height: 100%;
-    width: 100%; 
+    width: 100%;
     boject-fit: contain;
   }
   .mobile-container p {
@@ -103,7 +102,7 @@ function Footer() {
         </div>
         <div className="item">
           <h3>RESOURCES</h3>
-          <Link to="/">Blog</Link>
+          <Link to="/faq">faq</Link>
           <Link to="/">Online training</Link>
           <Link to="/">National Resource Guide</Link>
         </div>
@@ -113,7 +112,6 @@ function Footer() {
           <Link to="/about-us">About Us</Link>
           <Link to="/privacy-policy">Privacy policy</Link>
           <Link to="/terms-and-conditions">User agreement</Link>
-
         </div>
         <div className="item brand">
           <div className="icon-header">
@@ -122,10 +120,18 @@ function Footer() {
           </div>
           <h4>Follow Us</h4>
           <div className="icons-container">
-            <span><i className="fa-brands fa-facebook icon"></i></span>
-            <span><i className="fa-solid fa-x icon"></i></span>
-            <span><i className="fa-brands fa-instagram icon"></i></span>
-            <span><i className="fa-brands fa-youtube icon"></i></span>
+            <span>
+              <i className="fa-brands fa-facebook icon"></i>
+            </span>
+            <span>
+              <i className="fa-solid fa-x icon"></i>
+            </span>
+            <span>
+              <i className="fa-brands fa-instagram icon"></i>
+            </span>
+            <span>
+              <i className="fa-brands fa-youtube icon"></i>
+            </span>
           </div>
           <div className="mobile-container mt-4">
             <p>Mobile</p>
@@ -151,7 +157,6 @@ function Footer() {
       <hr className="rule" />
       <p className="copywite">
         All Right reversed &copy; Bways {new Date().getFullYear()}
-
       </p>
     </Wrapper>
   );
