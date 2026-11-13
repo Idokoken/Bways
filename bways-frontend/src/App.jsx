@@ -20,6 +20,9 @@ import Header from "./components/Header";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Faq from "./pages/Faq";
+import CookiePolicy from "./pages/CookiePolicy";
+import ReturnPolicy from "./pages/ReturnPolicy";
+import Career from "./pages/Career";
 
 import ScrollToTop from "./ScrollToTop";
 import Footer from "./components/Footer";
@@ -40,6 +43,10 @@ function App() {
         <Route path="/collection" element={<Collection />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="/cookie-policy" element={<CookiePolicy />} />
+        <Route path="/careers" element={<Career />} />
+        <Route path="/return-policy" element={<ReturnPolicy />} />
+
         <Route path="/cart" element={<Cart />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/verify" element={<Verify />} />

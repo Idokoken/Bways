@@ -70,22 +70,18 @@ const Wrapper = styled.footer`
   }
   .icon {
   }
-  .mobile {
+  .footer .item .contact div {
     display: flex;
   }
-  .mobile a {
-    height: 30px;
-    width: 90px;
-  }
-  .mobile-img {
-    border-radius: 5px;
-    height: 100%;
-    width: 100%;
-    boject-fit: contain;
-  }
-  .mobile-container p {
-    margin-bottom: 10px;
-    margin-top: 10px;
+  .footer .item .contact div span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid white;
+    border-radius: 50%;
+    padding: 15px;
+    width: 25px;
+    height: 25px;
   }
 `;
 
@@ -94,31 +90,51 @@ function Footer() {
     <Wrapper>
       <div className="footer">
         <div className="item">
-          <h3>SERVICES</h3>
-          <Link to="/">Accessibility</Link>
-          <Link to="/">Disclamers</Link>
-          <Link to="/">Sitemap</Link>
-          <Link to="/">Cookies </Link>
-        </div>
-        <div className="item">
-          <h3>RESOURCES</h3>
-          <Link to="/faq">faq</Link>
-          <Link to="/">Online training</Link>
-          <Link to="/">National Resource Guide</Link>
-        </div>
-        <div className="item">
-          <h3>OUR COMPANY</h3>
+          <h3>ABOUT BWAYS</h3>
           <Link to="/contact-us">Contact</Link>
           <Link to="/about-us">About Us</Link>
-          <Link to="/privacy-policy">Privacy policy</Link>
-          <Link to="/terms-and-conditions">User agreement</Link>
+          <Link to="/affliate">Become an Affliate</Link>
+          <Link to="/careers">Careers</Link>
+        </div>
+        <div className="item">
+          <h3>POLICIES</h3>
+          <Link to="/return-policy">Bways Return Policy</Link>
+          <Link to="/privacy-policy">Privacy Policy</Link>
+          <Link to="/terms-and-conditions">Teams of Use</Link>
+          <Link to="/cookie-policy">Cookies Policy</Link>
+        </div>
+        <div className="item">
+          <h3>MORE INFO</h3>
+          <Link to="/faq">FAQs</Link>
+          <Link to="/help-center">Help Center</Link>
+          <Link to="/blog">Blog</Link>
         </div>
         <div className="item brand">
           <div className="icon-header">
             <img src={brand} alt="brand" className="brand-img" />{" "}
             <h3 className="ms-2">Bways</h3>
           </div>
-          <h4>Follow Us</h4>
+          <div className="contact my-4">
+            <div className="mb-3">
+              <span className="">
+                <i className="fa-solid fa-phone"></i>
+              </span>
+              <p className="ms-5">+2348037755443</p>
+            </div>
+            <div className="mb-3">
+              <span className="">
+                <i className="fa-solid fa-envelope"></i>
+              </span>
+              <p className="ms-5">info@bways.com</p>
+            </div>
+            <div className="mb-3">
+              <span className="">
+                <i class="fa-solid fa-location-dot"></i>
+              </span>
+              <p className="ms-5">N0 11 Amino kano way Abuja</p>
+            </div>
+          </div>
+          <h4 className="mb-3">Follow Us</h4>
           <div className="icons-container">
             <span>
               <i className="fa-brands fa-facebook icon"></i>
@@ -132,25 +148,6 @@ function Footer() {
             <span>
               <i className="fa-brands fa-youtube icon"></i>
             </span>
-          </div>
-          <div className="mobile-container mt-4">
-            <p>Mobile</p>
-            <div className="mobile">
-              <Link to="/" className="me-3">
-                <img
-                  src="/images/apple.png"
-                  className="mobile-img"
-                  alt="mobile"
-                />
-              </Link>
-              <Link to="/">
-                <img
-                  src="/images/google.png"
-                  className="mobile-img"
-                  alt="mobile"
-                />
-              </Link>
-            </div>
           </div>
         </div>
       </div>
