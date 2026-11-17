@@ -142,8 +142,8 @@ const ShopContextProvider = (props) => {
   }, []);
 
   const value = {
-    // products: Data,
-    products,
+    products: Data,
+    // products,
     currency,
     delivery_fee,
     search,

@@ -102,6 +102,7 @@ function Cart(props) {
 
   return (
     <>
+      <Header />
       {/* <Wrapper> */}
       {/* <h2>Cart screen</h2> */}
       {/* <p>
@@ -136,7 +137,7 @@ function Cart(props) {
           </div>
         </div> */}
       {/* </Wrapper> */}
-      <div className="border-t pt-14">
+      <div className="border-t pt-14 px-5">
         <div className="text-2xl mb-3">
           <Title text1={"YOUR"} text2={"CART"} />
         </div>

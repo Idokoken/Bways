@@ -24,7 +24,7 @@ function Home() {
         <Hero />
         <LatestArrival />
         <LatestCollection />
-        <Products />
+        {/* <Products /> */}
         <BestSeller />
         <MajorCategory />
         <OurPolicy />

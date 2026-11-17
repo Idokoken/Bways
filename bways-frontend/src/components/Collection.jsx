@@ -5,6 +5,7 @@ import { ShopContext } from "../context/ShopContext";
 import drop_down from "../assets/drop_down.png";
 import Title from "./Title";
 import ProductItem from "./ProductItem";
+import Header from "./Header";
 
 const Wrapper = styled.div`
   // min-height: 60vh;
@@ -80,8 +81,9 @@ function Collection() {
 
   return (
     <>
+      <Header />
       <Wrapper>
-        <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
+        <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t px-5">
           {/* filter option */}
           <div className="min-w-60">
             <p

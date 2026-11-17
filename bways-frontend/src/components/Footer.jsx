@@ -8,7 +8,7 @@ const Wrapper = styled.footer`
   background-color: black;
   padding: 0;
   margin: 0;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
 
   .footer {
     width: 100vw;
@@ -24,11 +24,11 @@ const Wrapper = styled.footer`
   .footer .item h3 {
     color: rgba(30, 51, 187, 1);
     margin-bottom: 15px;
+    font-weight: 700;
   }
   .footer .item a {
     display: block;
     text-decoration: none;
-    color: inherit;
     margin-bottom: 10px;
     font-size: 18px;
   }
@@ -36,18 +36,10 @@ const Wrapper = styled.footer`
     font-weight: 700;
     color: rgba(30, 51, 187, 0.6);
   }
-  .rule {
-    border: 4px solid white;
-  }
-  .copywite {
-    text-align: center;
-    padding-bottom: 20px;
-  }
   .brand-img {
     width: 30px;
     height: 30px;
   }
-
   .brand {
     align-self: flex-start;
   }
@@ -82,6 +74,16 @@ const Wrapper = styled.footer`
     padding: 15px;
     width: 25px;
     height: 25px;
+  }
+  .rule {
+    border: 4px solid white;
+  }
+  .copywrite {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    ${tablet({ paddingP: "20px" })}
   }
 `;
 
@@ -129,32 +131,42 @@ function Footer() {
             </div>
             <div className="mb-3">
               <span className="">
-                <i class="fa-solid fa-location-dot"></i>
+                <i className="fa-solid fa-location-dot"></i>
               </span>
-              <p className="ms-5">N0 11 Amino kano way Abuja</p>
+              <p className="ms-5">N0 11 Amino kano way, Wuse 2, Abuja</p>
             </div>
           </div>
           <h4 className="mb-3">Follow Us</h4>
           <div className="icons-container">
-            <span>
-              <i className="fa-brands fa-facebook icon"></i>
-            </span>
-            <span>
-              <i className="fa-solid fa-x icon"></i>
-            </span>
-            <span>
-              <i className="fa-brands fa-instagram icon"></i>
-            </span>
-            <span>
-              <i className="fa-brands fa-youtube icon"></i>
-            </span>
+            <Link>
+              <span>
+                <i className="fa-brands fa-facebook icon"></i>
+              </span>
+            </Link>
+            <Link>
+              <span>
+                <i className="fa-solid fa-x icon"></i>
+              </span>
+            </Link>
+            <Link>
+              <span>
+                <i className="fa-brands fa-instagram icon"></i>
+              </span>
+            </Link>
+            <Link>
+              <span>
+                <i className="fa-brands fa-youtube icon"></i>
+              </span>
+            </Link>
           </div>
         </div>
       </div>
       <hr className="rule" />
-      <p className="copywite">
-        All Right reversed &copy; Bways {new Date().getFullYear()}
-      </p>
+      <div className="copywrite">
+        <p className="">
+          All Right Reserved &copy; Bways {new Date().getFullYear()}
+        </p>
+      </div>
     </Wrapper>
   );
 }

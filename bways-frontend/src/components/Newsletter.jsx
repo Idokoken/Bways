@@ -34,20 +34,20 @@ function Newsletter() {
     <>
       <Wrapper>
         <div className="text-center my-3">
-          <p className="text-2xl font-medium text-gray-800 ">
-            Subscribe Now to Recieve Update on Our Latest Promotion
+          <p className="text-2xl font-semibold text-black">
+            Receive Update on Our Latest Promotions
           </p>
-          <p className="text-gray-400 mt-3 ">
+          <p className="text-black mt-3 ">
             {" "}
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum,
-            itaque.
+            Subscribe today and get access to special discounts, exciting
+            promotions, and exclusive offers you won't want to miss
           </p>
           <form
             onSubmit={handleSubmit}
             className="w-full sm:w-1/2 flex items-center gap-0 mx-auto my-6 pl-3"
           >
             <input
-              className="w-full sm:flex-1 outline-none py-2.5 px-2"
+              className="w-full sm:flex-1 outline-none py-2.5 px-4"
               type="email"
               name="email"
               id="email"

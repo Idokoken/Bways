@@ -1,18 +1,135 @@
-import React, { useContext } from 'react'
-import { ShopContext } from '../context/ShopContext'
-import { Link } from 'react-router-dom'
+import React, { useContext } from "react";
+import { ShopContext } from "../context/ShopContext";
+import { Link, NavLink } from "react-router-dom";
+import styled from "styled-components";
+import { tablet } from "../Responsive";
+
+const Wrapper = styled.div`
+  margin: 0;
+  padding: 0;
+
+  .item {
+    justify-content: center;
+  }
+  .card {
+    background-color: #f8f8f8;
+    border-radius: 0.5rem;
+    padding: 0;
+    box-shadow:
+    //   -5px -5px 10px 5px rgba(236, 236, 243, 0.5),
+      5px 5px 5px 5px rgba(236, 236, 243, 0.5);
+  }
+
+  .image-container {
+    height: 150px;
+    background-color: white;
+    ${tablet({ height: "200px" })}
+  }
+  img {
+    border-radius: 0.5rem;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .card-body {
+    margin: 0;
+    padding: 0 10px;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: black;
+    ${tablet({ fontSize: "20px" })}
+  }
+  h4 {
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    font-weight: 600;
+  }
+  .price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px 5px;
+    font-size: 12px;
+    ${tablet({ fontSize: "16px" })}
+  }
+  .price h4 {
+    margin: 0;
+    font-size: 12px;
+    margin-left: 5px;
+    ${tablet({ fontSize: "14px" })}
+  }
+  .add {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    ${tablet({ fontSize: "16px" })}
+  }
+  .rating {
+    margin-left: 10px;
+  }
+  .rating span {
+    color: #f0c040;
+    margin: 0.1rem 0;
+    font-size: 0.8rem;
+  }
+  .rating span:last-child {
+    color: #404040;
+  }
+  .content {
+    margin: 0;
+    padding: 20px;
+  }
+`;
 
 function ProductItem({ id, image, name, price }) {
-    const { currency } = useContext(ShopContext)
-    return (
-        <Link to={`/product/${id}`} className='text-gray-700' >
-            <div className='overflow hidden'>
-                <img className='hover-scale-110 transition ease-in-out' src={image} alt='product' />
-            </div>
-            <p className='pt-3 pb-1 text-sm'>{name}</p>
-            <p className='font-medium text-sm'>{currency}{price}</p>
-        </Link>
-    )
+  const { currency } = useContext(ShopContext);
+  return (
+    <Wrapper>
+      {/* <Link to={`/product/${id}`} className="text-gray-700">
+        <div className="overflow hidden">
+          <img
+            className="hover-scale-110 transition ease-in-out"
+            src={image}
+            alt="product"
+          />
+        </div>
+        <p className="pt-3 pb-1 text-sm">{name}</p>
+        <p className="font-medium text-sm">
+          {currency}
+          {price}
+        </p>
+      </Link> */}
+
+      <div className="card" key={id}>
+        <NavLink
+          to={`/product/${id}`}
+          style={{ textDecoration: "none", color: "rgba(30, 51, 187, 1)" }}
+        >
+          <div className="image-container">
+            <img src={image} alt={name} />
+          </div>
+          <div className="card-body">
+            <h3>{name}</h3>
+          </div>
+        </NavLink>
+        <div className="rating">
+          {/* <Rating rating={item.rating} numReviews={item.numReviews} /> */}
+        </div>
+        <div className="price my-2">
+          <h4 className="">${price}</h4>
+          <div className="add btn">Add to Cart</div>
+        </div>
+      </div>
+    </Wrapper>
+  );
 }
 
-export default ProductItem
+export default ProductItem;

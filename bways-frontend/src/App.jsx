@@ -26,6 +26,9 @@ import Career from "./pages/Career";
 
 import ScrollToTop from "./ScrollToTop";
 import Footer from "./components/Footer";
+import HelpCenter from "./pages/HelpCenter";
+import Blog from "./pages/Blog";
+import AffliatesPage from "./pages/AffliatesPage";
 
 function App() {
   return (
@@ -46,6 +49,9 @@ function App() {
         <Route path="/cookie-policy" element={<CookiePolicy />} />
         <Route path="/careers" element={<Career />} />
         <Route path="/return-policy" element={<ReturnPolicy />} />
+        <Route path="/help-center" element={<HelpCenter />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/affliate" element={<AffliatesPage />} />
 
         <Route path="/cart" element={<Cart />} />
         <Route path="/orders" element={<Orders />} />
